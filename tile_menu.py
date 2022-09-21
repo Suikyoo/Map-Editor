@@ -1,49 +1,90 @@
-import pygame, os, map_functs, core_functs, tab
+import pygame, os, map_functs, core_functs, tab, font
 
 class TileMenu:
-    def __init__(self, coords=[0, 0], surf_size=(100, 100)):
-        self.tile_dimension = [13, 13]
-
-        #tile data is a dictionary that contains a list of tiles 
-        #with their corresponding tileset name as key
+    def __init__(self, coords):
+        #tile data is a dictionary that contains a tile 
+        #with their identifier as key
         self.tile_data = {}
+
+        self.tileset = ""
+        self.tile_id = 0
+
         self.tabs = []
         self.tab_index = 0
+
+        self.coords = coords
+
+        self.font = font.Font('assets/font/font.png')
+        self.tile_texts = ["", ""]
+
+    def set_loc(self, coords):
+        self.coords = coords
+
+    def set_render(self, size):
+        #render
+        self.color_scheme = ((46, 66, 102), (90, 110, 160))
+        self.surf = pygame.Surface(size)
+        self.surf_mesh = tab.SurfMesh(size)
+        self.tab_vertical_loc = 80
+
+        div = self.tab_vertical_loc - 5
+        self.menu_padding = (
+                (1, 1, self.surf.get_width() - 2, div - 3), 
+                (1, div - 1, self.surf.get_width() - 2, self.surf.get_height() - div)
+                )
+
+    def load_tiles(self, tile_size):
+        self.tile_size = tile_size
 
         directory = "assets/tilesets"
         for file in os.listdir(directory):
             tileset_name = os.path.splitext(file)[0]
 
             #tabs
-            self.tabs.append(tab.TileSetTab(pygame.image.load(os.path.join(directory, file)).convert(), self.tile_dimension))
-            self.tabs[-1].set_name(tileset_name)
+            self.tabs.append(tab.TileSetTab(pygame.image.load(os.path.join(directory, file)).convert(), tile_size))
+            self.tabs[-1].set_tileset_name(tileset_name)
 
-            self.tile_data[tileset_name] = map_functs.cut_tile(os.path.join(directory, file), (12, 12))
+            tileset = map_functs.cut_tile(os.path.join(directory, file), self.tile_size)
 
-        #render
-        self.surf = pygame.Surface(surf_size)
-        self.surf_mesh = tab.SurfMesh(surf_size)
-        self.tileset_render = pygame.Surface((50, 50))
-        self.coords = coords
+            for i in range(len(tileset)):
+                self.tile_data[tileset_name + "_" + str(i)] = tileset[i] 
+
+        self.tabs.append(tab.EntityTab(tile_size))
+        # "#" is the indicator for entity tile in tile data
+        self.tabs[-1].set_tileset_name("#")
+        entity_data = self.tabs[-1].get_tile_data()
+        for k, v in entity_data.items():
+            self.tile_data["#" + "_" + k] = v
+
+    def get_current_tab(self):
+        return self.tabs[self.tab_index]
 
     def event_handler(self, event):
         self.tabs[self.tab_index].event_handler(event) 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_TAB:
+                self.tab_index  = (self.tab_index + 1) % len(self.tabs)
         
     def draw(self, surf):
         #setting current_tab as it takes way too long to write self.tabs[self.tab_index]
-        current_tab = self.tabs[self.tab_index]
+        current_tab = self.get_current_tab()
 
-        #scroll for tile palette
+
         current_tab.update()
-        #clamping scroll
-        #idea: change start value of clamp for a sloppy scroll(scrolls only when selection is out of screen)
-        current_tab.scroll = [core_functs.clamp(current_tab.scroll[i], (0, current_tab.get_size()[i] - self.tileset_render.get_size()[i])) for i in range(2)]
 
-        self.surf.fill((46, 66, 102))
+        #set tile info
+        self.tileset, self.tile_id = current_tab.get_info()
 
-        self.tileset_render.blit(core_functs.cut(current_tab.render(), *current_tab.scroll, *current_tab.get_size()), (0, 0))
+        self.surf.fill(self.color_scheme[1])
+        
+        for i in self.menu_padding:
+            pygame.draw.rect(self.surf, self.color_scheme[0], i)
 
-        self.surf.blit(self.tileset_render, [self.surf_mesh.abs((0.5, 0.5))[i] - self.tileset_render.get_size()[i]/2 for i in range(2)])
+        tile_text = [self.tileset, str(self.tile_id)]
+        text = [self.tile_texts[i] + tile_text[i] for i in range(2)]
+        self.font.render_lines(self.surf, 20, 5, text)
+
+        self.surf.blit(current_tab.render(), [self.surf_mesh.abs((0.5, 0.5))[0] - current_tab.render_size[0]/2, self.tab_vertical_loc])
         surf.blit(self.surf, self.coords)
 
     def update(self, surf):

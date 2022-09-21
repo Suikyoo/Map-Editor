@@ -1,4 +1,4 @@
-import json, pygame, math
+import json, pygame, math, random
 
 def get_distance(coords, target):
      return math.sqrt((coords[0] - target[0])**2 + (coords[1] - target[1])**2)
@@ -24,6 +24,10 @@ def lerp(current, target, rate):
 def ferp(current, target, rate):
     return (target - current) * rate
 
+def safe_divide(dividend, divisor):
+    try: return dividend/divisor
+    except ZeroDivisionError: return 0
+
 def cut(surface, x, y, width, height):
     image = surface.copy()
     rect = pygame.Rect(x, y, width, height)
@@ -40,12 +44,19 @@ def outline(surf, coords, mask, color=(255, 255, 255)):
 #swap color for surfs that only have 1 color
 #color info contains (prev_color, next_color)
 def swap_color(surf, color_info):
+    surf = surf.copy()
     fill_surf = surf.copy()
     fill_surf.fill(color_info[1])
     surf.set_colorkey(color_info[0])
     fill_surf.blit(surf, (0, 0))
     return fill_surf
 
+def randomize_color(color_except=[]):
+    rand_color = tuple(map(random.randint, [0] * 3, [255] * 3))
+    if rand_color not in color_except:
+        return rand_color
+    else: randomize_color(color_except=color_except)
+    
 #circle_info = [point, radius]
 def circle_rect_collide(circle_info, rect):
     collide_point = circle_info[0].copy()
@@ -87,12 +98,57 @@ def write_json(file_path, content):
     with open(file_path, 'w') as f:
         json.dump(content, f, indent=6)
 
-#used to load dict data but it returns 
-#a value if there is no such key in the dict
-def load_data(dict, key, ret_val=[]):
-    try: data = dict[key]
-    except KeyError: data = ret_val
+#checks if a string represents an int or a float i.e. "12" --> True
+#wrapper for string.isdigit() to cover for sign cases
+def is_digit(string):
+    for char in string:
+        if not char.isdigit() and char not in ["-", "+", "."]:
+            return False
+            
+    return True
+            
+    
+    return string.isdigit()
 
-    return data
-#I know it's supposed to have none as an error return value
-#but most of the data I wanna load are of type list
+#used to drill a dictionary and input values
+def data_pierce(item, key_list, value={}):
+    if len(key_list) > 0:
+        if len(key_list) == 1:
+            ret_val = value
+        else: 
+            ret_val = {}
+
+        item[key_list[0]] = item.get(key_list[0], ret_val)
+        data_pierce(item[key_list[0]], key_list[1:], value=value)
+
+#tries to retrieve data specified in the dictionary path
+#returns None if dictionary path doesn't exist
+#kinda sounds like a scout right?
+def data_scout(item, key_list):
+    if len(key_list) > 0:
+        if isinstance(item, dict):
+            return data_scout(item.get(key_list[0]), key_list[1:])
+    return item
+
+def copy_dict(item):
+    def replicate_dict(item):
+        if isinstance(item, (dict, list)):
+            return item.copy()
+        return item
+
+    return {k : replicate_dict(v) for k, v in item.items()}
+
+#this sounds so wrong
+def prune_dict(item, blank_val={}):
+    if isinstance(item, dict):
+        if len(item):
+            for k in item: 
+                v = prune_dict(item[k], blank_val=blank_val)
+                if v == blank_val: 
+                    return blank_val
+
+        else: return blank_val
+
+    elif item == blank_val:
+        return blank_val
+
