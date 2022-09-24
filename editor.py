@@ -164,11 +164,10 @@ class Editor:
         loc_key = tuple(coords)
 
         if tile_key:
-            tileset, id = tile_key.split("_")
+            tileset, id = tile_key.rsplit("_", 1)
             if tileset == "#":
                 keys = [chunk_key, loc_key]
-                core_functs.data_pierce(self.entity_data, keys, value=None)
-                self.entity_data[chunk_key][loc_key] = id
+                core_functs.data_pierce(self.entity_data, keys, value=id)
 
             else:
                 keys = [self.layer[0], chunk_key, loc_key]

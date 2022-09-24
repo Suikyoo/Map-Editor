@@ -41,13 +41,13 @@ class TileMenu:
             tileset_name = os.path.splitext(file)[0]
 
             #tabs
-            self.tabs.append(tab.TileSetTab(pygame.image.load(os.path.join(directory, file)).convert(), tile_size))
-            self.tabs[-1].set_tileset_name(tileset_name)
+            tab = tab.TileSetTab(os.path.join(directory, file), tile_size)
 
-            tileset = map_functs.cut_tile(os.path.join(directory, file), self.tile_size)
+            #get tile data from tab and add it to the general tile data
+            for k, v in self.tab.get_data().items():
+                self.tile_data[k] = v
 
-            for i in range(len(tileset)):
-                self.tile_data[tileset_name + "_" + str(i)] = tileset[i] 
+            self.tabs.append(tab)
 
         self.tabs.append(tab.EntityTab(tile_size))
         # "#" is the indicator for entity tile in tile data
@@ -58,6 +58,11 @@ class TileMenu:
 
     def get_current_tab(self):
         return self.tabs[self.tab_index]
+
+    def get_tab_from_name(self, string):
+        for i in self.tabs:
+            if i.tileset_name == string:
+                return i
 
     def event_handler(self, event):
         self.tabs[self.tab_index].event_handler(event) 

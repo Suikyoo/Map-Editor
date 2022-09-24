@@ -1,8 +1,8 @@
 import pygame, core_functs
 #splits an image and returns a list of surf
 #Use slash(/) when specifying file path
-def cut_tile(file_path, dimension, colorkey=(0, 0, 0)):
-    surf = pygame.image.load(file_path).convert()
+def cut_set(surf, dimension, colorkey=(0, 0, 0)):
+    surf = surf.copy()
     surf_size = surf.get_size()
     tileset = []
     for y in range(surf_size[1]//dimension[1]):
