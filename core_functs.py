@@ -102,12 +102,10 @@ def write_json(file_path, content):
 #wrapper for string.isdigit() to cover for sign cases
 def is_digit(string):
     for char in string:
-        if not char.isdigit() and char not in ["-", "+", "."]:
-            return False
+        if char in ["-", "+", "."]:
+            string = string.split(char)
+            string = char.join(string)
             
-    return True
-            
-    
     return string.isdigit()
 
 #used to drill a dictionary and input values
@@ -132,8 +130,8 @@ def data_scout(item, key_list):
 
 def copy_dict(item):
     def replicate_dict(item):
-        if isinstance(item, (dict, list)):
-            return item.copy()
+        if isinstance(item, dict):
+            copy_dict(item.copy())
         return item
 
     return {k : replicate_dict(v) for k, v in item.items()}
@@ -141,14 +139,14 @@ def copy_dict(item):
 #this sounds so wrong
 def prune_dict(item, blank_val={}):
     if isinstance(item, dict):
-        if len(item):
-            for k in item: 
-                v = prune_dict(item[k], blank_val=blank_val)
-                if v == blank_val: 
-                    return blank_val
-
-        else: return blank_val
+        for k in item.copy():
+            v = prune_dict(item[k], blank_val=blank_val)
+            if v == blank_val:
+                item.pop(k)
+            if not len(item):
+                item = blank_val
 
     elif item == blank_val:
         return blank_val
 
+    return item

@@ -71,16 +71,4 @@ def mapify_json(item):
 
     return item
 
-def prune_dict(item, blank_val={}):
-    if isinstance(item, dict):
-        for k in item.copy():
-            v = prune_dict(item[k], blank_val=blank_val)
-            if v == blank_val:
-                item.pop(k)
-            if not len(item):
-                item = blank_val
 
-    elif item == blank_val:
-        return blank_val
-
-    return item

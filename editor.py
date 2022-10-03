@@ -3,8 +3,8 @@ import os, pygame, tile_menu, cursor, core_functs, map_functs, font
 class Editor:
     def __init__(self, window_size):
         #save config
-        #[map_save_file, entity_save_file]
-        self.save_files = ["map.json", "entity.json"]
+        self.map_registries = ["tile", "object", "entity"]
+        self.save_file = "map.json"
         self.save_status = False
 
         #tile config
@@ -29,6 +29,7 @@ class Editor:
         self.scale = 0.5
         self.surf = pygame.Surface([window_size[i] * self.scale for i in range(2)])
         self.map_render = self.surf.copy()
+        self.background_color = (7, 11, 20)
 
         self.scroll = [0, 0]
         self.scroll_vel = [0, 0]
@@ -38,19 +39,25 @@ class Editor:
         self.zoom_limit = [1, 3]
 
         #data hehe
-        self.map_data, self.entity_data = self.load_map()
+        self.map_data = self.load_map() 
 
-        if self.map_data == {}:
+        for i in self.map_registries:
+            self.map_data[i] = self.map_data.get(i, {})
+
+        self.tile_map = self.map_data["tile"]
+        self.object_map = self.map_data["object"]
+        self.entity_map = self.map_data["entity"] 
+
+        if self.tile_map == {}:
             self.layer = [0, 0]
 
-        else: self.layer = [0, max([int(i) for i in self.map_data])]
+        else: self.layer = [0, max([int(i) for i in self.tile_map])]
 
         #1 for front and 0 for behind
         self.tile_slot = 1
 
         #editor controls
-        self.movement_scheme = "adws"
-        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_LCTRL, pygame.K_SPACE, pygame.K_t, pygame.K_RETURN]         
+        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_CAPSLOCK, pygame.K_SPACE, pygame.K_t, pygame.K_LCTRL, pygame.K_RETURN]         
         self.tool_keys = [False] * len(self.tool_scheme)
         #detects key_taps
         self.tool_tap = self.tool_keys.copy()
@@ -60,6 +67,11 @@ class Editor:
         
         #used by tool_tap
         self.tool_delay = self.tool_keys.copy()
+
+        self.movement_scheme = "wsad"
+        self.movement_keys = [False] * len(self.movement_scheme)
+        self.movement_tap = self.movement_keys.copy()
+        self.movement_delay = self.movement_keys.copy()
 
         self.tile_bond = {
                 (False, False, False, True) : 2, 
@@ -77,6 +89,9 @@ class Editor:
                 (False, False, True, False) : 22 
                 } 
 
+        self.map_geography = ["Layer", "Chunk", "Coord", "Tile Slot"]
+
+    
     def add_layer(self):
         self.layer[1] += 1
 
@@ -90,18 +105,33 @@ class Editor:
         #...where am I supposed to put this then?!?!?
         if self.tool_keys[2]: 
             self.tile_slot = 0
-            self.cursor.color = (130, 130, 130)
+            self.cursor.color = (200, 130, 130)
         else: 
             self.tile_slot = 1
             self.cursor.color = (255, 255, 255)
 
         if self.tool_tap[4]: 
             self.layer[1] += 1
-            self.switch_layer(self.layer[1] + 1)
+            self.switch_layer(self.layer[1])
 
         for i in range(1, 10):
             if keys[pygame.key.key_code(str(i))]:
                 self.switch_layer(i - 1)
+
+        if self.tool_keys[5]:
+            count = 0
+            for value in [-1, 1]:
+                if self.movement_tap[2 + count]:
+                    self.switch_layer(self.layer[0] + value)
+                count += 1
+
+    def show_layers(self, surf, coords):
+        for layer in range(self.layer[1] + 1):
+            radius = 3
+            spacing = 10
+            if layer == self.layer[0]: thickness = 0
+            else: thickness = 1
+            pygame.draw.circle(surf, (255, 255, 255), [coords[0] + layer * (radius + spacing) - (self.layer[1] * (radius + spacing) / 2), coords[1]], radius, thickness)
 
     #done before calling event_handler() 
     #for every event that's active
@@ -133,12 +163,24 @@ class Editor:
     def tool_key_handler(self, keys):
         self.update_tool_keys(keys)
 
+    def movement_key_handler(self, keys):
+        self.movement_tap = [False] * len(self.movement_scheme)
+
+        for i in range(len(self.movement_scheme)):
+            self.movement_keys[i] = keys[pygame.key.key_code(self.movement_scheme[i])]
+
+            #... I know I copied it, you judgemental son of a gun
+            if self.movement_keys[i] != self.movement_delay[i]:
+                self.movement_delay[i] = self.movement_keys[i]
+                if self.movement_delay[i]: 
+                    self.movement_tap[i] = True
+
     def check_tile(self, target_loc):
         #I know I copied it ok?
         chunk_key = tuple(self.get_chunk(target_loc))
         loc_key = tuple(target_loc)
         keys = [self.layer[0], chunk_key, loc_key]
-        data = core_functs.data_scout(self.map_data, keys)
+        data = core_functs.data_scout(self.tile_map, keys)
         if not data: return False
         elif not data[self.tile_slot]: return False
         else: return True
@@ -164,40 +206,42 @@ class Editor:
         loc_key = tuple(coords)
 
         if tile_key:
-            tileset, id = tile_key.rsplit("_", 1)
-            if tileset == "#":
-                keys = [chunk_key, loc_key]
-                core_functs.data_pierce(self.entity_data, keys, value=id)
+            tileset, tile_id = tile_key.rsplit("_", 1)
 
-            else:
-                keys = [self.layer[0], chunk_key, loc_key]
-                core_functs.data_pierce(self.map_data, keys, value=[None, None])
-                core_functs.data_scout(self.map_data, keys)[self.tile_slot] = tile_key
+            tab = self.tile_menu.get_tab_from_name(tileset)
+            keys = [self.layer[0], chunk_key, loc_key]
+            keys = [keys[i] for i in range(len(keys)) if i in tab.pierce_level]
+            core_functs.data_pierce(self.map_data, [tab.get_map_registry()])
+            map_registry = self.map_data[tab.get_map_registry()]
 
+            tab.set_tile_id(map_registry, keys + [self.tile_slot, tileset, tile_id])
+            
         else:
             keys = [self.layer[0], chunk_key, loc_key]
-            core_functs.data_pierce(self.map_data, keys, value=[None, None])
-            core_functs.data_scout(self.map_data, keys)[self.tile_slot] = None
+            core_functs.data_pierce(self.tile_map, keys, value=[None, None])
+            core_functs.data_scout(self.tile_map, keys)[self.tile_slot] = None
 
             keys = [chunk_key, loc_key]
-            core_functs.data_pierce(self.entity_data, keys, value=None)
-            self.entity_data[chunk_key][loc_key] = None
+            core_functs.data_pierce(self.entity_map, keys, value=None)
+            core_functs.data_pierce(self.object_map, keys, value=None)
+            self.entity_map[chunk_key][loc_key] = None
+            self.object_map[chunk_key][loc_key] = None
 
     def scroll_handler(self, dt, keys):
         #movement for camera panning
         self.scroll_vel = [False] * 4
 
         if self.tool_keys[0]:
-            for axis in range(2):
-                for val in range(2):
-                    index = axis * 2 + val
-                    if keys[pygame.key.key_code(self.movement_scheme[index])]:
-                        if val == 0: val = -1
+            count = 0
+            for axis in [1, 0]:
+                for val in [-1, 1]:
+                    if self.movement_keys[count]:
                         self.scroll_vel[axis] = val * 90 
+                    count += 1
 
         self.scroll = [self.scroll[i] + self.scroll_vel[i] * dt for i in range(2)]
 
-    def selection_fill(self, target_loc, max_iteration=200):
+    def selection_fill(self, target_loc, max_iteration=100):
         if max_iteration > 0: 
             if target_loc not in self.cursor.selection:
                 self.place_tile(target_loc, self.tile_menu.tileset + "_" + str(12))
@@ -227,12 +271,13 @@ class Editor:
                             tile_info = self.tile_menu.tileset + "_" + str(self.tile_bond.get(bond, 12)) 
                     else:
                         tile_info = None
+                        
+                    if valid_tileset:
+                        self.place_tile(i.copy(), tile_info)
 
-                    self.place_tile(i.copy(), tile_info)
+            self.cursor.selection = []
 
-                self.cursor.selection = []
-
-    def text_handler(self):
+    def text_handler(self, surf):
         spacing = 5
 
         save_msg = ""
@@ -244,7 +289,7 @@ class Editor:
         text = [self.map_texts[i] + map_texts[i] for i in range(len(self.map_texts))]
 
         for i in range(len(text)):
-            self.font.render(self.surf, text[i], [self.surf.get_width() - self.font.get_string_size(text[i])[0] - spacing, spacing + 10 * i])
+            self.font.render(surf, text[i], [surf.get_width() - self.font.get_string_size(text[i])[0] - spacing, spacing + 10 * i])
         
     def menu_to_cursor(self):
         self.cursor.set_tile_info(self.tile_menu.tileset, self.tile_menu.tile_id)
@@ -305,7 +350,7 @@ class Editor:
 
     def render_map(self):
         #fill
-        self.map_render.fill((0, 0, 0))
+        self.map_render.fill(self.background_color)
 
         #visible chunks
         chunk_loc = [int(self.scroll[i] // (self.chunk_size[i] * self.tile_size[i])) for i in range(2)]
@@ -315,28 +360,28 @@ class Editor:
         
         #map
         for layer in sorted(range(self.layer[1] + 1), reverse=True):
-            if layer in self.map_data:
+            if layer in self.tile_map:
                 for y in range(chunk_amt[1]):
                     for x in range(chunk_amt[0]):
                         chunk_key = (chunk_loc[0] + x, chunk_loc[1] + y)
-                        if chunk_key in self.map_data[layer]:
-                            for coord in self.map_data[layer][chunk_key]:
-                                tile_keys = self.map_data[layer][chunk_key][coord]
+                        if chunk_key in self.tile_map[layer]:
+                            for coord in self.tile_map[layer][chunk_key]:
+                                tile_keys = self.tile_map[layer][chunk_key][coord]
                                 for key in tile_keys:
                                     if key != None:
                                         tile_surf = self.tile_menu.tile_data.get(key)
                                         if tile_surf != None:
                                             self.map_render.blit(tile_surf, [coord[i] - self.scroll[i] for i in range(2)])
 
-        #entity
         for y in range(chunk_amt[1]):
             for x in range(chunk_amt[0]):
                 chunk_key = (chunk_loc[0] + x, chunk_loc[1] + y)
-                if chunk_key in self.entity_data:
-                    for coords in self.entity_data[chunk_key]:
-                        entity = self.entity_data[chunk_key][coords]
-                        if entity:
-                            self.map_render.blit(self.tile_menu.tile_data["#_" + entity], [coords[j] - self.scroll[j] for j in range(2)])
+                for registry in ["object", "entity"]:
+                    if chunk_key in self.map_data[registry]:
+                        for coords in self.map_data[registry][chunk_key]:
+                            data = self.map_data[registry][chunk_key][coords]
+                            if data:
+                                self.map_render.blit(self.tile_menu.tile_data[data], [coords[j] - self.scroll[j] for j in range(2)])
 
 
         #tile_preview
@@ -357,25 +402,18 @@ class Editor:
 
             
     def load_map(self):
-        lst = []
-        for i in self.save_files:
-            try: data = core_functs.read_json(i)
-            except FileNotFoundError: data = {}
-            data = map_functs.mapify_json(data)
-            lst.append(data)
-
-        return lst
+        try: data = core_functs.read_json(self.save_file)
+        except FileNotFoundError: data = {}
+        data = map_functs.mapify_json(data)
+        return data
             
     def save_map(self):
-        data = [self.map_data, self.entity_data]
-        for i in range(len(data)):
-            data[i] = core_functs.copy_dict(data[i])
-            data[i] = map_functs.jsonify_map(data[i])
-            if i:
-                map_functs.prune_dict(data[i], None)
-            else: map_functs.prune_dict(data[i], [None, None])
-            core_functs.write_json(self.save_files[i], data[i])
+        data = core_functs.copy_dict(self.map_data)
+        data = map_functs.jsonify_map(data)
+        for i in [None, [None, None]]:
+            core_functs.prune_dict(data, i)
 
+        core_functs.write_json(self.save_file, data)
         self.save_status = True
 
     def update(self, surf, dt):
@@ -388,6 +426,7 @@ class Editor:
 
         #update tool key events 
         self.tool_key_handler(keys)
+        self.movement_key_handler(keys)
         self.surf.fill((0, 0, 0))
 
         self.layer_handler(keys)
@@ -401,10 +440,11 @@ class Editor:
         self.cursor_to_editor(dt)
 
         #save
-        if self.tool_tap[5]:
+        if self.tool_tap[-1]:
             self.save_map()
 
-        self.text_handler()
+        self.text_handler(self.surf)
+        self.show_layers(self.surf, [self.surf.get_width()/2, 20])
         surf.blit(pygame.transform.scale(self.surf, surf.get_size()), (0, 0))
             
         

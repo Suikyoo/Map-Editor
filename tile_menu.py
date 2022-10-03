@@ -39,22 +39,24 @@ class TileMenu:
         directory = "assets/tilesets"
         for file in os.listdir(directory):
             tileset_name = os.path.splitext(file)[0]
+            if os.path.isfile(os.path.join(directory, file)):
+                #tabs
+                tile_tab = tab.TileSetTab(os.path.join(directory, file), tile_size)
 
-            #tabs
-            tab = tab.TileSetTab(os.path.join(directory, file), tile_size)
+                #get tile data from tab and add it to the general tile data
+                for k, v in tile_tab.get_data().items():
+                    self.tile_data[k] = v
 
-            #get tile data from tab and add it to the general tile data
-            for k, v in self.tab.get_data().items():
+                self.tabs.append(tile_tab)
+
+        self.tabs.append(tab.ObjectTab(os.path.join(directory, 'object_tiles', 'objects.png'), tile_size))
+        self.tabs.append(tab.EntityTab(tile_size))
+
+        unique_tiles = [self.tabs[-i-1].get_tile_data() for i in range(2)]
+        for i in unique_tiles:
+            for k, v in i.items():
                 self.tile_data[k] = v
 
-            self.tabs.append(tab)
-
-        self.tabs.append(tab.EntityTab(tile_size))
-        # "#" is the indicator for entity tile in tile data
-        self.tabs[-1].set_tileset_name("#")
-        entity_data = self.tabs[-1].get_tile_data()
-        for k, v in entity_data.items():
-            self.tile_data["#" + "_" + k] = v
 
     def get_current_tab(self):
         return self.tabs[self.tab_index]
@@ -78,7 +80,7 @@ class TileMenu:
         current_tab.update()
 
         #set tile info
-        self.tileset, self.tile_id = current_tab.get_info()
+        self.tileset, self.tile_id = current_tab.get_current_tile()
 
         self.surf.fill(self.color_scheme[1])
         

@@ -1,4 +1,4 @@
-import pygame, core_functs, math
+import os, pygame, math, core_functs, map_functs
 #tabs contain data and returns a surf based on said data
 
 class Tab:
@@ -12,45 +12,63 @@ class Tab:
         pass
 
 class TileSetTab(Tab):
-    def __init__(self, path, tile_size):
-        self.tileset = pygame.image.load(path).convert()
-        self.tileset_name = os.path.splitext(os.path.split(path)[1])[0]
+    def __init__(self, source, tile_size):
+        if isinstance(source, pygame.Surface):
+            self.tileset = source
+            self.tileset_name = ""
+        else: 
+            self.tileset = pygame.image.load(source).convert()
+            self.tileset_name = os.path.splitext(os.path.split(source)[1])[0]
+
         self.tile_size = tile_size
-        self.tile_data = self.set_data(self.tileset, self.tileset_name, self.tile_size)
+        self.tile_ids = [str(i) for i in range(math.prod([self.tileset.get_size()[i]//self.tile_size[i] for i in range(2)]))]
+        self.tile_data = self.set_tile_data()
 
         self.tile_movement = "wsad"
-        self.tile_id = 0
+        self.tile_index = 0
 
         self.matrix_coords = [0, 0]
         self.scroll = [0, 0]
 
-        self.surf = tileset_surf.copy()
-        self.tileset_surf = tileset_surf.copy()
+        self.surf = self.tileset.copy()
+        self.tileset_surf = self.tileset.copy()
         
         max_render_size = 70
-        self.render_size = [core_functs.clamp(self.get_size()[i], (0, max_render_size)) for i in range(2)]
+        self.render_size = [core_functs.clamp(self.surf.get_size()[i], (0, max_render_size)) for i in range(2)]
 
         #oh! Big ballsey move innit lad? Putting a variable that no one would understand.
-        self.pierce_level = 3 
+        #registries = ["tile", "object", "entity"]
+        #there are different data structures saved in different files
+        self.pierce_level = list(range(3))
+        self.map_registry = "tile"
 
+    
     #too lazy to do self.surf.get_size()
     def get_size(self):
         return self.surf.get_size()
 
+    def get_map_registry(self):
+        return self.map_registry
+
+    #info = [layer, chunk, coords, tile_slot, tileset, tile_id]
+    def set_tile_id(self, dictionary, info):
+        core_functs.data_pierce(dictionary, info[:3], value=[None, None])
+        core_functs.data_scout(dictionary, info[:3])[info[-3]] = "_".join(info[-2:])
+
     #I don't know why I put so many parameters in a foking method
-    def set_data(self, surface, name, tile_size):
+    def set_tile_data(self):
         data = {}
-        surf_list = map_functs.cut_set(surface, tile_size)
-        for i in range(len(surf_list)):
-            data[name + "_" + str(i)] = surf_list[i]
+        surf_list = map_functs.cut_set(self.tileset, self.tile_size)
+        for i in range(len(self.tile_ids)):
+            data[self.tileset_name + "_" + str(self.tile_ids[i])] = surf_list[i]
 
         return data
 
     def to_matrix(self, num):
-        return [num%(self.get_size()[0]//self.tile_size[0]), num//(self.get_size()[0]//self.tile_size[0])]
+        return [num%(self.surf.get_size()[0]//self.tile_size[0]), num//(self.surf.get_size()[0]//self.tile_size[0])]
 
     def to_id(self, loc):
-        return loc[1] * self.get_size()[1]//self.tile_size[1] + loc[0]
+        return loc[1] * self.surf.get_size()[0]//self.tile_size[0] + loc[0]
 
     def event_handler(self, event):
         count = 0
@@ -60,29 +78,29 @@ class TileSetTab(Tab):
                     if event.key == pygame.key.key_code(self.tile_movement[count]):
                         
                         dimension = [self.surf.get_size()[i]//self.tile_size[i] for i in range(2)]
-                        matrix = self.to_matrix(self.tile_id)
+                        matrix = self.to_matrix(self.tile_index)
                         matrix[axis] += movement
                         matrix = [core_functs.clamp(matrix[i], (0, dimension[i] - 1)) for i in range(len(matrix))]
-                        self.tile_id = self.to_id(matrix)
+                        self.tile_index = self.to_id(matrix)
 
                     count += 1
 
     def get_current_tile(self):
-        return [self.tileset_name, self.tile_id]
+        return [self.tileset_name, self.tile_ids[self.tile_index]]
 
     def get_data(self):
         return self.tile_data
 
     def update(self):
-        self.scroll = [self.to_matrix(self.tile_id)[i] * self.tile_size[i] for i in range(2)]
-        self.scroll = [core_functs.clamp(self.scroll[i], (0, self.get_size()[i] - self.render_size[i])) for i in range(2)]
+        self.scroll = [self.to_matrix(self.tile_index)[i] * self.tile_size[i] for i in range(2)]
+        self.scroll = [core_functs.clamp(self.scroll[i], (0, self.surf.get_size()[i] - self.render_size[i])) for i in range(2)]
 
     def render(self):
         self.surf.fill((0, 0, 0))
         self.surf.blit(self.tileset_surf, (0, 0))
 
         #highlight
-        pygame.draw.rect(self.surf, (255, 255, 255), (*[self.to_matrix(self.tile_id)[i] * self.tile_size[i] for i in range(2)], *self.tile_size), 1)
+        pygame.draw.rect(self.surf, (255, 255, 255), (*[self.to_matrix(self.tile_index)[i] * self.tile_size[i] for i in range(2)], *self.tile_size), 1)
         return core_functs.cut(self.surf, *self.scroll, *self.render_size)
 
         
@@ -94,8 +112,18 @@ class TileSetTab(Tab):
 
 class ObjectTab(TileSetTab):
     def __init__(self, path, tile_size):
-        self.objects = []
         super().__init__(path, tile_size)
+        try: self.tile_ids = core_functs.read_json('objects.json') 
+        except FileNotFoundError: self.tile_ids = []
+        self.pierce_level = [1, 2]
+        self.map_registry = "object"
+        self.tileset_name = "object"
+        self.tile_data = self.set_tile_data()
+
+        
+    #info = [chunk, coords, tile_slot, tileset, tile_id]
+    def set_tile_id(self, dictionary, info):
+        core_functs.data_pierce(dictionary, info[:2], value="_".join(info[-2:]))
 
     def set_data(self, surface, name, tile_size):
         data = {}
@@ -104,11 +132,22 @@ class ObjectTab(TileSetTab):
             data[name + "_" + self.objects[i]]= surf_list[i]
 
         return data
-class EntityTab(TileSetTab):
+
+    def get_tile_data(self):
+        return self.tile_data
+
+class EntityTab(ObjectTab):
+    
     def __init__(self, tile_size):
-        self.entities = ["Player", "Knight", "Invoker"]
-        tileset_surf = self.create_tileset(len(self.entities), tile_size)
-        super().__init__(tileset_surf, tile_size)
+        try: tile_ids = core_functs.read_json('entities.json') 
+        except FileNotFoundError: tile_ids = []
+
+        tileset = self.create_tileset(len(tile_ids), tile_size)
+        super().__init__(tileset, tile_size)
+        self.tile_ids = tile_ids
+        self.pierce_level = [1, 2]
+        self.tileset_name = "entity"
+        self.map_registry = "entity"
         self.tile_data = self.set_tile_data()
 
     def create_tileset(self, amt, tile_size):
@@ -128,22 +167,9 @@ class EntityTab(TileSetTab):
         surf.fill(color)
         return surf
 
-    def set_tile_data(self):
-        data = {}
-        count = 0
-        for x in range(len(self.entities)): 
-            data[self.entities[count]] = self.create_tile(self.tileset_surf.get_at((x * self.tile_size[0], 0)))
-            count += 1
-        return data
-
     def get_tile_data(self):
         return self.tile_data
 
-    #override get_info to modify the second value returned
-    #from: tile_id ie [0, 1, 2, 3] to: entity_id["Player", Entity"]
-    def get_info(self):
-        return [self.tileset, self.entities[self.tile_id]]
-        
 class SurfMesh:
     def __init__(self, surf_size):
         self.surf_size = surf_size
