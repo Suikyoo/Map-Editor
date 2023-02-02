@@ -1,4 +1,5 @@
-import pygame, os, map_functs, core_functs, tab, font
+import pygame, os 
+from scripts import map_functs, core_functs, tab, font
 
 class TileMenu:
     def __init__(self, coords):
@@ -49,14 +50,13 @@ class TileMenu:
 
                 self.tabs.append(tile_tab)
 
-        self.tabs.append(tab.ObjectTab(os.path.join(directory, 'object_tiles', 'objects.png'), tile_size))
+        self.tabs.append(tab.ObjectTab(os.path.join(directory, 'objects'), tile_size))
         self.tabs.append(tab.EntityTab(tile_size))
 
         unique_tiles = [self.tabs[-i-1].get_tile_data() for i in range(2)]
         for i in unique_tiles:
             for k, v in i.items():
                 self.tile_data[k] = v
-
 
     def get_current_tab(self):
         return self.tabs[self.tab_index]

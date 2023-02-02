@@ -1,4 +1,5 @@
-import pygame, sys, editor
+import pygame, sys
+from scripts import editor
 pygame.init()
 
 class Program:

@@ -1,4 +1,5 @@
-import os, pygame, map_functs
+import os, pygame, 
+from scripts import map_functs
 pygame.init()
 pygame.display.set_mode((50, 50))
 
@@ -7,8 +8,8 @@ def make_dir(string):
     except FileExistsError: pass
 
 cut_dimensions = [13, 13]
-load_dir = "assets/tilesets"
-save_dir = "cut_tileset"
+load_dir = "../assets/tilesets"
+save_dir = "../cut_tileset"
 make_dir(save_dir)
 
 for file in os.listdir(load_dir):

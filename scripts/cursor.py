@@ -1,4 +1,5 @@
-import pygame, core_functs
+import pygame 
+from scripts import core_functs
 
 class Cursor:
     def __init__(self):

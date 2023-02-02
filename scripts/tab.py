@@ -1,4 +1,5 @@
-import os, pygame, math, core_functs, map_functs
+import os, pygame, math
+from scripts import core_functs, map_functs
 #tabs contain data and returns a surf based on said data
 
 class Tab:
@@ -53,7 +54,8 @@ class TileSetTab(Tab):
     #info = [layer, chunk, coords, tile_slot, tileset, tile_id]
     def set_tile_id(self, dictionary, info):
         core_functs.data_pierce(dictionary, info[:3], value=[None, None])
-        core_functs.data_scout(dictionary, info[:3])[info[-3]] = "_".join(info[-2:])
+        if info[-1] != None:
+            core_functs.data_scout(dictionary, info[:3])[info[-3]] = "_".join(info[-2:])
 
     #I don't know why I put so many parameters in a foking method
     def set_tile_data(self):
@@ -110,20 +112,45 @@ class TileSetTab(Tab):
 #entities here are loaded like tiles
 #the only way to tell them apart is that entities are of "#" tileset i.e.(#_Player, #_Knight)
 
-class ObjectTab(TileSetTab):
-    def __init__(self, path, tile_size):
-        super().__init__(path, tile_size)
-        try: self.tile_ids = core_functs.read_json('objects.json') 
-        except FileNotFoundError: self.tile_ids = []
+class UniqueTab(TileSetTab):
+    def __init__(self, tileset, tile_ids, tilesize):
+        super().__init__(tileset, tilesize)
+        self.tile_ids = tile_ids
         self.pierce_level = [1, 2]
-        self.map_registry = "object"
-        self.tileset_name = "object"
-        self.tile_data = self.set_tile_data()
 
-        
+    def create_tileset(self, amt, tile_size):
+        dimensions = self.get_dimensions(amt)
+        surf = pygame.Surface([dimensions[i] * tile_size[i] for i in range(2)])
+        surf.fill((0, 0 ,0))
+        color_except = [(0, 0, 0)]
+
+        iter_list = [0, 0]
+        for iter_list[1] in range(dimensions[1]):
+            for iter_list[0] in range(dimensions[0]):
+                color = core_functs.randomize_color(color_except=color_except)
+                color_except.append(color)
+                pygame.draw.rect(surf, color, (*[iter_list[i] * tile_size[i] for i in range(2)], *tile_size))
+
+        return surf
+    
+    def get_dimensions(self, value):
+        for i in sorted(range(1, 6), reverse=True):
+            if value != i:
+                if not value % i:
+                    return [value // i, i]
+    
+    def create_tile(self, color):
+        surf = pygame.Surface(self.tile_size)
+        surf.fill(color)
+        return surf
+
+    def get_tile_data(self):
+        return self.tile_data
+
     #info = [chunk, coords, tile_slot, tileset, tile_id]
     def set_tile_id(self, dictionary, info):
-        core_functs.data_pierce(dictionary, info[:2], value="_".join(info[-2:]))
+        if info[-1] != None:
+            core_functs.data_pierce(dictionary, info[:2], value="_".join(info[-2:]))
 
     def set_data(self, surface, name, tile_size):
         data = {}
@@ -136,39 +163,37 @@ class ObjectTab(TileSetTab):
     def get_tile_data(self):
         return self.tile_data
 
-class EntityTab(ObjectTab):
-    
+class EntityTab(UniqueTab):
     def __init__(self, tile_size):
         try: tile_ids = core_functs.read_json('entities.json') 
         except FileNotFoundError: tile_ids = []
-
         tileset = self.create_tileset(len(tile_ids), tile_size)
-        super().__init__(tileset, tile_size)
-        self.tile_ids = tile_ids
-        self.pierce_level = [1, 2]
+
+        super().__init__(tileset, tile_ids, tile_size)
         self.tileset_name = "entity"
         self.map_registry = "entity"
         self.tile_data = self.set_tile_data()
 
-    def create_tileset(self, amt, tile_size):
-        surf = pygame.Surface((amt * tile_size[0], tile_size[1]))
-        surf.fill((0, 0 ,0))
-        color_except = [(0, 0, 0)]
-
-        for i in range(amt):
-            color = core_functs.randomize_color(color_except=color_except)
-            color_except.append(color)
-            pygame.draw.rect(surf, color, (i * tile_size[0], 0, *tile_size))
-
-        return surf
     
-    def create_tile(self, color):
-        surf = pygame.Surface(self.tile_size)
-        surf.fill(color)
-        return surf
+class ObjectTab(UniqueTab):
+    def __init__(self, path, tile_size):
+        tile_ids = [os.path.splitext(i)[0] for i in os.listdir(path) if os.path.isfile(os.path.join(path, i))]
+        self.object_surfs = [pygame.image.load(os.path.join(path, i)) for i in os.listdir(path) if os.path.isfile(os.path.join(path, i))]
+        for i in self.object_surfs:
+            i.set_colorkey((0, 0, 0))
+        tileset = self.create_tileset(len(tile_ids), tile_size) 
 
-    def get_tile_data(self):
-        return self.tile_data
+        super().__init__(tileset, tile_ids, tile_size)
+        self.map_registry = "object"
+        self.tileset_name = "object"
+        self.tile_data = self.set_tile_data()
+
+    def set_tile_data(self):
+        data = {}
+        for i in range(len(self.tile_ids)):
+            data[self.tileset_name + "_" + str(self.tile_ids[i])] = self.object_surfs[i]
+
+        return data
 
 class SurfMesh:
     def __init__(self, surf_size):

@@ -457,7 +457,7 @@
                               "front_tiles_11"
                         ],
                         "182:130": [
-                              null,
+                              "front_tiles_11",
                               "front_tiles_7"
                         ],
                         "169:130": [
@@ -479,16 +479,16 @@
                               "front_tiles_8"
                         ],
                         "208:156": [
-                              null,
+                              "front_tiles_18",
                               "front_tiles_13"
                         ],
                         "208:143": [
-                              null,
-                              "front_tiles_8"
+                              "front_tiles_13",
+                              null
                         ],
                         "195:143": [
-                              "front_tiles_7",
-                              "front_tiles_13"
+                              "front_tiles_12",
+                              null
                         ],
                         "195:169": [
                               "front_tiles_12",
@@ -503,8 +503,20 @@
                               "front_tiles_13"
                         ],
                         "195:130": [
-                              null,
-                              "front_tiles_13"
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:130": [
+                              "front_tiles_18",
+                              null
+                        ],
+                        "221:130": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "208:130": [
+                              "front_tiles_12",
+                              null
                         ]
                   },
                   "8:3": {
@@ -760,11 +772,11 @@
                         ],
                         "611:130": [
                               null,
-                              "front_tiles_11"
+                              "front_tiles_12"
                         ],
                         "598:143": [
                               null,
-                              "front_tiles_6"
+                              "front_tiles_12"
                         ],
                         "611:143": [
                               "front_tiles_7",
@@ -777,6 +789,18 @@
                         "637:143": [
                               null,
                               "front_tiles_13"
+                        ],
+                        "585:130": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "598:130": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "585:143": [
+                              null,
+                              "front_tiles_17"
                         ]
                   },
                   "9:1": {
@@ -814,11 +838,11 @@
                         ],
                         "611:117": [
                               null,
-                              "front_tiles_11"
+                              "front_tiles_12"
                         ],
                         "611:104": [
                               null,
-                              "front_tiles_11"
+                              "front_tiles_12"
                         ],
                         "611:91": [
                               null,
@@ -851,11 +875,23 @@
                         "585:65": [
                               "front_tiles_16",
                               null
+                        ],
+                        "585:117": [
+                              null,
+                              "front_tiles_6"
+                        ],
+                        "598:117": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "598:104": [
+                              null,
+                              "front_tiles_6"
                         ]
                   },
                   "2:1": {
                         "182:117": [
-                              null,
+                              "front_tiles_11",
                               "front_tiles_12"
                         ],
                         "182:104": [
@@ -909,8 +945,8 @@
                               "front_tiles_13"
                         ],
                         "195:117": [
-                              null,
-                              "front_tiles_13"
+                              "front_tiles_7",
+                              null
                         ],
                         "195:65": [
                               null,
@@ -927,6 +963,22 @@
                         "221:65": [
                               "front_tiles_18",
                               "front_tiles_18"
+                        ],
+                        "208:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "221:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "234:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "247:117": [
+                              "front_tiles_7",
+                              null
                         ]
                   },
                   "9:0": {
@@ -1567,6 +1619,34 @@
                         "481:65": [
                               null,
                               "front_tiles_16"
+                        ],
+                        "455:117": [
+                              "front_tiles_7",
+                              "front_tiles_8"
+                        ],
+                        "507:117": [
+                              "front_tiles_7",
+                              "front_tiles_13"
+                        ],
+                        "494:117": [
+                              "front_tiles_7",
+                              "front_tiles_11"
+                        ],
+                        "481:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "468:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "494:104": [
+                              null,
+                              "front_tiles_6"
+                        ],
+                        "507:104": [
+                              null,
+                              "front_tiles_8"
                         ]
                   },
                   "5:1": {
@@ -1657,6 +1737,166 @@
                         "585:260": [
                               null,
                               "front_tiles_18"
+                        ]
+                  },
+                  "6:2": {
+                        "442:143": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "442:130": [
+                              "front_tiles_12",
+                              "front_tiles_17"
+                        ],
+                        "429:130": [
+                              "front_tiles_17",
+                              "front_tiles_17"
+                        ],
+                        "416:130": [
+                              "front_tiles_16",
+                              null
+                        ]
+                  },
+                  "7:2": {
+                        "455:143": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "468:143": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "481:143": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "481:130": [
+                              "front_tiles_12",
+                              "front_tiles_10"
+                        ],
+                        "494:130": [
+                              "front_tiles_12",
+                              "front_tiles_17"
+                        ],
+                        "507:130": [
+                              "front_tiles_12",
+                              "front_tiles_18"
+                        ],
+                        "468:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "455:130": [
+                              "front_tiles_12",
+                              "front_tiles_18"
+                        ],
+                        "507:143": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "494:143": [
+                              "front_tiles_17",
+                              null
+                        ]
+                  },
+                  "8:2": {
+                        "520:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "533:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "546:130": [
+                              "front_tiles_13",
+                              "front_tiles_6"
+                        ],
+                        "559:130": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "572:130": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "572:143": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "559:143": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "546:143": [
+                              "front_tiles_18",
+                              "front_tiles_17"
+                        ],
+                        "533:143": [
+                              "front_tiles_17",
+                              "front_tiles_10"
+                        ],
+                        "520:143": [
+                              "front_tiles_17",
+                              null
+                        ]
+                  },
+                  "6:1": {
+                        "429:117": [
+                              "front_tiles_7",
+                              "front_tiles_12"
+                        ],
+                        "442:117": [
+                              "front_tiles_7",
+                              "front_tiles_12"
+                        ],
+                        "429:104": [
+                              null,
+                              "front_tiles_6"
+                        ],
+                        "442:104": [
+                              null,
+                              "front_tiles_8"
+                        ],
+                        "416:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "403:117": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "390:117": [
+                              "front_tiles_10",
+                              null
+                        ]
+                  },
+                  "4:1": {
+                        "260:117": [
+                              "front_tiles_12",
+                              "front_tiles_front_tiles_14"
+                        ],
+                        "273:117": [
+                              "front_tiles_14",
+                              null
+                        ]
+                  },
+                  "8:1": {
+                        "559:117": [
+                              "front_tiles_14",
+                              null
+                        ],
+                        "546:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "533:117": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "520:117": [
+                              "front_tiles_7",
+                              null
                         ]
                   }
             },
@@ -2035,6 +2275,37 @@
             },
             "8:2": {
                   "559:182": "object_torch"
+            },
+            "4:2": {},
+            "6:2": {
+                  "429:182": "object_waypoint:level_2"
             }
+      },
+      "entity": {
+            "7:2": {
+                  "481:182": "entity_invoker"
+            },
+            "5:2": {
+                  "377:156": "entity_guardian"
+            },
+            "4:2": {
+                  "273:182": "entity_player"
+            },
+            "8:2": {
+                  "546:182": "entity_knight"
+            }
+      },
+      "info": {
+            "chunk_size": [
+                  5,
+                  5
+            ],
+            "tile_size": [
+                  13,
+                  13
+            ],
+            "collide_layers": [
+                  0
+            ]
       }
 }

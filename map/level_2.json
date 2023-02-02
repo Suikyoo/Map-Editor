@@ -1,0 +1,2582 @@
+{
+      "tile": {
+            "0": {
+                  "3:2": {
+                        "208:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "208:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "234:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "195:130": [
+                              "front_tiles_8",
+                              null
+                        ],
+                        "247:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "234:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "221:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "208:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "195:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "195:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "195:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "208:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "195:182": [
+                              "front_tiles_17",
+                              null
+                        ]
+                  },
+                  "4:2": {
+                        "260:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "273:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "299:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "312:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "312:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "299:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "273:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "260:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "273:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "299:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "312:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "312:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "260:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "286:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "299:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "273:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "260:143": [
+                              "front_tiles_7",
+                              null
+                        ]
+                  },
+                  "5:2": {
+                        "325:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "325:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "325:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "325:130": [
+                              "front_tiles_6",
+                              null
+                        ],
+                        "338:130": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "351:130": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "364:130": [
+                              "front_tiles_8",
+                              null
+                        ],
+                        "364:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "377:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "325:182": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "364:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "364:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "364:182": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:182": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:182": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:143": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "6:2": {
+                        "390:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "390:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "390:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "403:143": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "403:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "416:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "390:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "416:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:143": [
+                              "front_tiles_12",
+                              "front_tiles_6"
+                        ],
+                        "442:169": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "429:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "403:182": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "416:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "416:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:156": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "416:130": [
+                              "front_tiles_6",
+                              null
+                        ],
+                        "429:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:182": [
+                              "front_tiles_17",
+                              "front_tiles_16"
+                        ]
+                  },
+                  "5:3": {
+                        "364:195": [
+                              "front_tiles_13",
+                              null
+                        ],
+                        "364:208": [
+                              "front_tiles_18",
+                              null
+                        ],
+                        "351:208": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "338:208": [
+                              "front_tiles_16",
+                              null
+                        ],
+                        "325:195": [
+                              "front_tiles_16",
+                              null
+                        ],
+                        "338:195": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:195": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "3:3": {
+                        "195:208": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "195:195": [
+                              null,
+                              "front_tiles_8"
+                        ]
+                  },
+                  "2:1": {
+                        "143:117": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:104": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:91": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:91": [
+                              "front_tiles_13",
+                              null
+                        ],
+                        "156:117": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:117": [
+                              "front_tiles_13",
+                              null
+                        ],
+                        "169:104": [
+                              "front_tiles_13",
+                              null
+                        ],
+                        "143:78": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "156:78": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "169:78": [
+                              "front_tiles_8",
+                              null
+                        ],
+                        "130:78": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "130:117": [
+                              "front_tiles_12",
+                              "front_tiles_13"
+                        ],
+                        "130:104": [
+                              "front_tiles_12",
+                              "front_tiles_8"
+                        ],
+                        "143:104": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:91": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "130:91": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "2:3": {
+                        "182:221": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "182:208": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "169:208": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "169:195": [
+                              "front_tiles_18",
+                              "front_tiles_12"
+                        ],
+                        "156:195": [
+                              "front_tiles_17",
+                              "front_tiles_12"
+                        ],
+                        "143:195": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "143:208": [
+                              "front_tiles_18",
+                              "front_tiles_12"
+                        ],
+                        "130:208": [
+                              "front_tiles_16",
+                              "front_tiles_12"
+                        ],
+                        "130:195": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "156:208": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "182:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "169:221": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "156:221": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "143:221": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "130:221": [
+                              null,
+                              "front_tiles_17"
+                        ]
+                  },
+                  "2:2": {
+                        "156:182": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "156:169": [
+                              "front_tiles_12",
+                              "front_tiles_7"
+                        ],
+                        "143:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:130": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "169:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:130": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:143": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:156": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:169": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:169": [
+                              "front_tiles_12",
+                              "front_tiles_8"
+                        ],
+                        "169:182": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "130:182": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "130:130": [
+                              "front_tiles_12",
+                              "front_tiles_13"
+                        ],
+                        "130:143": [
+                              "front_tiles_12",
+                              "front_tiles_18"
+                        ],
+                        "130:156": [
+                              "front_tiles_12",
+                              "front_tiles_13"
+                        ],
+                        "143:169": [
+                              "front_tiles_12",
+                              "front_tiles_7"
+                        ],
+                        "130:169": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "143:182": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "182:182": [
+                              "front_tiles_17",
+                              "front_tiles_8"
+                        ]
+                  },
+                  "1:2": {
+                        "117:182": [
+                              "front_tiles_16",
+                              "front_tiles_12"
+                        ],
+                        "117:169": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:156": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:143": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:130": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "91:182": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "104:143": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:143": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:143": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:130": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:130": [
+                              null,
+                              "front_tiles_16"
+                        ],
+                        "104:130": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:130": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:156": [
+                              null,
+                              "front_tiles_16"
+                        ],
+                        "91:156": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:156": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:169": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:169": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "104:182": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "1:1": {
+                        "117:117": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:104": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:91": [
+                              "front_tiles_11",
+                              "front_tiles_13"
+                        ],
+                        "117:78": [
+                              "front_tiles_6",
+                              "front_tiles_13"
+                        ],
+                        "78:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "117:65": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "65:78": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:78": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:117": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:117": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:117": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:117": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:104": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:104": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:104": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:91": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:91": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:78": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:104": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "65:91": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:91": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:65": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "91:78": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "1:3": {
+                        "117:208": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:208": [
+                              null,
+                              "front_tiles_16"
+                        ],
+                        "104:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:195": [
+                              null,
+                              "front_tiles_16"
+                        ],
+                        "117:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "117:221": [
+                              null,
+                              "front_tiles_16"
+                        ]
+                  },
+                  "7:2": {
+                        "455:143": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "468:143": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "468:156": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "481:156": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "481:169": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "468:169": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:169": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:156": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "481:182": [
+                              "front_tiles_18",
+                              "front_tiles_12"
+                        ],
+                        "494:182": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:169": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:156": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:143": [
+                              "front_tiles_18",
+                              "front_tiles_12"
+                        ],
+                        "494:130": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "481:130": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "481:143": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:130": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "468:130": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:182": [
+                              "front_tiles_17",
+                              "front_tiles_12"
+                        ],
+                        "468:182": [
+                              "front_tiles_17",
+                              "front_tiles_12"
+                        ],
+                        "507:130": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "507:143": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:169": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:182": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "507:156": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "1:0": {
+                        "117:26": [
+                              "front_tiles_16",
+                              "front_tiles_13"
+                        ],
+                        "117:13": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "104:13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:0": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "117:0": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:39": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "104:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:39": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "65:26": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "65:13": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:0": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:0": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "117:52": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "65:52": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "65:0": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:52": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:52": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:52": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "2:0": {
+                        "130:26": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "143:26": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "156:26": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "169:26": [
+                              "front_tiles_18",
+                              null
+                        ],
+                        "169:13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:13": [
+                              "front_tiles_12",
+                              "front_tiles_18"
+                        ],
+                        "130:13": [
+                              "front_tiles_12",
+                              "front_tiles_17"
+                        ],
+                        "182:13": [
+                              "front_tiles_18",
+                              null
+                        ],
+                        "130:0": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "143:0": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "156:0": [
+                              "front_tiles_12",
+                              "front_tiles_18"
+                        ],
+                        "169:0": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:0": [
+                              "front_tiles_13",
+                              null
+                        ]
+                  },
+                  "1:-1": {
+                        "104:-13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "104:-26": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "104:-39": [
+                              "front_tiles_11",
+                              "front_tiles_7"
+                        ],
+                        "104:-52": [
+                              "front_tiles_6",
+                              null
+                        ],
+                        "117:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "117:-65": [
+                              "front_tiles_6",
+                              null
+                        ],
+                        "117:-13": [
+                              "front_tiles_11",
+                              "front_tiles_12"
+                        ],
+                        "117:-26": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "117:-39": [
+                              "front_tiles_12",
+                              "front_tiles_8"
+                        ],
+                        "91:-13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "78:-26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "91:-26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:-13": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "78:-13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "65:-39": [
+                              null,
+                              "front_tiles_6"
+                        ],
+                        "78:-39": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "91:-39": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "65:-26": [
+                              null,
+                              "front_tiles_11"
+                        ]
+                  },
+                  "2:-1": {
+                        "130:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "143:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "156:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "169:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "182:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "182:-13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:-13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:-13": [
+                              "front_tiles_12",
+                              "front_tiles_13"
+                        ],
+                        "143:-13": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "130:-13": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "130:-26": [
+                              "front_tiles_12",
+                              "front_tiles_7"
+                        ],
+                        "143:-26": [
+                              "front_tiles_12",
+                              "front_tiles_7"
+                        ],
+                        "156:-26": [
+                              "front_tiles_12",
+                              "front_tiles_8"
+                        ],
+                        "169:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "130:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "130:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "143:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "156:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "169:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "182:-52": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "3:-1": {
+                        "195:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "208:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "221:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "234:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "247:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "195:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "195:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "208:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "208:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "221:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "234:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "247:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "234:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "221:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "208:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "195:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "195:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "208:-52": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "4:-1": {
+                        "260:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "273:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "286:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "299:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "312:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "260:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "273:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "299:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "312:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "312:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "312:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "299:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "273:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "260:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "260:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "273:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "286:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "299:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "299:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "286:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "273:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "260:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "312:-52": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "5:-1": {
+                        "325:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "338:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "351:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "364:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "377:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "325:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "364:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "364:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "377:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "364:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "351:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "325:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "325:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "338:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "351:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "338:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "325:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "364:-52": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "6:-1": {
+                        "390:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "390:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "390:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "390:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "390:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "416:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "416:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "416:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "403:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "416:-13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "429:-13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "429:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "442:-13": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "416:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:-52": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "6:0": {
+                        "429:0": [
+                              "front_tiles_11",
+                              null
+                        ],
+                        "429:13": [
+                              "front_tiles_16",
+                              null
+                        ],
+                        "442:13": [
+                              "front_tiles_17",
+                              null
+                        ],
+                        "442:0": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "6:1": {
+                        "442:104": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "442:91": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:91": [
+                              "front_tiles_11",
+                              null
+                        ],
+                        "442:117": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "429:117": [
+                              "front_tiles_11",
+                              null
+                        ],
+                        "429:104": [
+                              "front_tiles_11",
+                              null
+                        ],
+                        "429:78": [
+                              "front_tiles_11",
+                              null
+                        ],
+                        "429:65": [
+                              "front_tiles_6",
+                              null
+                        ],
+                        "442:65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "442:78": [
+                              "front_tiles_12",
+                              null
+                        ]
+                  },
+                  "7:3": {
+                        "468:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "481:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "455:208": [
+                              null,
+                              "front_tiles_16"
+                        ],
+                        "455:195": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "507:195": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "494:195": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:208": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "481:208": [
+                              null,
+                              "front_tiles_17"
+                        ],
+                        "468:208": [
+                              null,
+                              "front_tiles_17"
+                        ]
+                  },
+                  "7:1": {
+                        "481:117": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "468:117": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:104": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "455:117": [
+                              "front_tiles_12",
+                              "front_tiles_6"
+                        ],
+                        "455:65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "468:65": [
+                              "front_tiles_7",
+                              "front_tiles_11"
+                        ],
+                        "481:65": [
+                              "front_tiles_8",
+                              "front_tiles_12"
+                        ],
+                        "481:78": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "481:91": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "494:91": [
+                              "front_tiles_8",
+                              "front_tiles_12"
+                        ],
+                        "494:104": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "494:117": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "468:104": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "481:104": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "468:91": [
+                              "front_tiles_12",
+                              "front_tiles_16"
+                        ],
+                        "455:91": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "455:78": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "468:78": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "494:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:78": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:104": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:78": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:91": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:117": [
+                              null,
+                              "front_tiles_13"
+                        ]
+                  },
+                  "7:0": {
+                        "455:13": [
+                              "front_tiles_17",
+                              "front_tiles_16"
+                        ],
+                        "468:13": [
+                              "front_tiles_17",
+                              "front_tiles_12"
+                        ],
+                        "481:13": [
+                              "front_tiles_17",
+                              "front_tiles_12"
+                        ],
+                        "494:13": [
+                              "front_tiles_18",
+                              "front_tiles_12"
+                        ],
+                        "494:0": [
+                              "front_tiles_13",
+                              "front_tiles_12"
+                        ],
+                        "468:0": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "455:0": [
+                              "front_tiles_12",
+                              "front_tiles_11"
+                        ],
+                        "481:0": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "481:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "481:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "481:52": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:0": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "507:52": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "494:52": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "468:52": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "468:39": [
+                              null,
+                              "front_tiles_11"
+                        ],
+                        "468:26": [
+                              null,
+                              "front_tiles_11"
+                        ]
+                  },
+                  "7:-1": {
+                        "494:-13": [
+                              "front_tiles_8",
+                              "front_tiles_12"
+                        ],
+                        "481:-13": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "481:-26": [
+                              "front_tiles_13",
+                              "front_tiles_7"
+                        ],
+                        "481:-39": [
+                              "front_tiles_13",
+                              null
+                        ],
+                        "481:-52": [
+                              "front_tiles_8",
+                              null
+                        ],
+                        "468:-65": [
+                              "front_tiles_8",
+                              null
+                        ],
+                        "455:-65": [
+                              "front_tiles_7",
+                              null
+                        ],
+                        "455:-13": [
+                              "front_tiles_12",
+                              "front_tiles_6"
+                        ],
+                        "468:-13": [
+                              "front_tiles_12",
+                              "front_tiles_12"
+                        ],
+                        "468:-26": [
+                              "front_tiles_12",
+                              "front_tiles_6"
+                        ],
+                        "455:-26": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "455:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "468:-39": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "468:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "455:-52": [
+                              "front_tiles_12",
+                              null
+                        ],
+                        "494:-26": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "507:-26": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "507:-13": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "8:1": {
+                        "520:104": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "520:91": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "533:91": [
+                              null,
+                              "front_tiles_18"
+                        ],
+                        "533:78": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:65": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "520:65": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "520:78": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "8:0": {
+                        "533:52": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:39": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:26": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:13": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:0": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "520:26": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "520:13": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "520:0": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "520:39": [
+                              null,
+                              "front_tiles_12"
+                        ],
+                        "520:52": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "8:-1": {
+                        "533:-13": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "533:-26": [
+                              null,
+                              "front_tiles_8"
+                        ],
+                        "520:-26": [
+                              null,
+                              "front_tiles_7"
+                        ],
+                        "520:-13": [
+                              null,
+                              "front_tiles_12"
+                        ]
+                  },
+                  "8:2": {
+                        "520:143": [
+                              null,
+                              "front_tiles_8"
+                        ],
+                        "520:156": [
+                              null,
+                              "front_tiles_13"
+                        ],
+                        "520:169": [
+                              null,
+                              "front_tiles_18"
+                        ]
+                  }
+            },
+            "1": {
+                  "2:1": {
+                        "156:65": [
+                              null,
+                              "back_tiles_10"
+                        ]
+                  },
+                  "2:0": {
+                        "156:52": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "156:39": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "182:0": [
+                              null,
+                              "back_tiles_2"
+                        ]
+                  },
+                  "3:0": {
+                        "208:0": [
+                              null,
+                              "back_tiles_4"
+                        ],
+                        "221:0": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "234:0": [
+                              null,
+                              "back_tiles_2"
+                        ],
+                        "247:0": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "195:0": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "208:13": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "208:26": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "208:39": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "208:52": [
+                              null,
+                              "back_tiles_5"
+                        ]
+                  },
+                  "4:0": {
+                        "260:0": [
+                              null,
+                              "back_tiles_4"
+                        ],
+                        "273:0": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "286:0": [
+                              null,
+                              "back_tiles_2"
+                        ],
+                        "299:0": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "312:0": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "260:13": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "260:26": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "260:39": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "260:52": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:13": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "312:26": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "312:39": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "312:52": [
+                              null,
+                              "back_tiles_5"
+                        ]
+                  },
+                  "5:0": {
+                        "325:0": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "338:0": [
+                              null,
+                              "back_tiles_2"
+                        ],
+                        "351:0": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "364:0": [
+                              null,
+                              "back_tiles_4"
+                        ],
+                        "377:0": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "364:13": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "364:26": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "364:39": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "364:52": [
+                              null,
+                              "back_tiles_9"
+                        ]
+                  },
+                  "6:0": {
+                        "390:0": [
+                              null,
+                              "back_tiles_2"
+                        ],
+                        "403:0": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "416:0": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "416:13": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "416:26": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "416:39": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "416:52": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "429:0": [
+                              null,
+                              "back_tiles_1"
+                        ]
+                  },
+                  "3:1": {
+                        "208:65": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "208:78": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "208:91": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "208:104": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "208:117": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "221:65": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "234:65": [
+                              null,
+                              "back_tiles_2"
+                        ],
+                        "247:65": [
+                              null,
+                              "back_tiles_3"
+                        ]
+                  },
+                  "3:2": {
+                        "208:130": [
+                              null,
+                              "back_tiles_14"
+                        ]
+                  },
+                  "4:1": {
+                        "260:65": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "260:78": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "260:91": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "260:104": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "260:117": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:65": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:78": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "312:91": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:104": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:117": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "299:65": [
+                              null,
+                              "back_tiles_3"
+                        ],
+                        "286:65": [
+                              null,
+                              "back_tiles_2"
+                        ]
+                  },
+                  "4:2": {
+                        "260:130": [
+                              null,
+                              "back_tiles_14"
+                        ],
+                        "312:130": [
+                              null,
+                              "back_tiles_10"
+                        ]
+                  },
+                  "5:1": {
+                        "364:65": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "364:78": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "364:91": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "364:104": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "364:117": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "377:65": [
+                              null,
+                              "back_tiles_1"
+                        ],
+                        "351:65": [
+                              null,
+                              "back_tiles_3"
+                        ]
+                  },
+                  "6:1": {
+                        "416:65": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "416:78": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "416:91": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "416:104": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "416:117": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "403:65": [
+                              null,
+                              "back_tiles_3"
+                        ]
+                  },
+                  "6:2": {
+                        "416:130": [
+                              null,
+                              "back_tiles_14"
+                        ]
+                  },
+                  "5:2": {
+                        "364:130": [
+                              null,
+                              "back_tiles_14"
+                        ]
+                  },
+                  "4:-1": {
+                        "260:-13": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "273:-13": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "286:-13": [
+                              null,
+                              "back_tiles_5"
+                        ],
+                        "299:-13": [
+                              null,
+                              "back_tiles_9"
+                        ],
+                        "312:-13": [
+                              null,
+                              "back_tiles_9"
+                        ]
+                  }
+            }
+      },
+      "object": {
+            "2:1": {
+                  "130:65": "object_box"
+            },
+            "3:1": {
+                  "208:104": "object_torch"
+            },
+            "4:1": {
+                  "312:104": "object_torch"
+            },
+            "5:1": {
+                  "338:104": "object_waypoint:level_1"
+            },
+            "4:0": {
+                  "260:26": "object_torch"
+            },
+            "5:0": {
+                  "364:26": "object_torch"
+            },
+            "6:1": {
+                  "416:104": "object_torch"
+            }
+      },
+      "entity": {
+            "4:1": {
+                  "273:91": "entity_guardian"
+            },
+            "6:0": {
+                  "442:39": "entity_invoker"
+            },
+            "2:0": {
+                  "156:52": "entity_player"
+            },
+            "6:1": {
+                  "390:117": "entity_invoker"
+            }
+      },
+      "info": {
+            "chunk_size": [
+                  5,
+                  5
+            ],
+            "tile_size": [
+                  13,
+                  13
+            ],
+            "collide_layers": [
+                  0
+            ]
+      }
+}

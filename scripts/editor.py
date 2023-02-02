@@ -1,21 +1,37 @@
-import os, pygame, tile_menu, cursor, core_functs, map_functs, font
+import os, pygame
+from scripts import tile_menu, cursor, core_functs, map_functs, font
 
 class Editor:
     def __init__(self, window_size):
         #save config
-        self.map_registries = ["tile", "object", "entity"]
-        self.save_file = "map.json"
+        self.map_registries = ["tile", "object", "entity", "info"]
+        self.save_file = os.path.join("map", os.listdir("map")[0])
         self.save_status = False
 
+        #data hehe
+        self.map_data = self.load_map() 
+
+        for i in self.map_registries:
+            self.map_data[i] = self.map_data.get(i, {})
+
+        self.tile_map = self.map_data["tile"]
+        self.object_map = self.map_data["object"]
+        self.entity_map = self.map_data["entity"] 
+        self.map_info = self.map_data["info"]
+
         #tile config
-        self.tile_size = (13, 13)
-        self.chunk_size = (5, 5)
+        self.map_info["chunk_size"] = self.map_info.get("chunk_size", (5, 5))
+        self.map_info["tile_size"] = self.map_info.get("tile_size", (13, 13))
+        self.map_info["collide_layers"] = self.map_info.get("collide_layers", [0]) 
+
+        self.chunk_size = self.map_info["chunk_size"]
+        self.tile_size = self.map_info["tile_size"]
 
         #gui elements
 
         #texts
         self.font = font.Font("assets/font/font.png")
-        self.map_texts = ["layer: ", "coords: ", "tile_slot: ", ""]
+        self.map_texts = ["chunk: ", "coords: ", "tile_slot: ", ""]
 
         #tile menu  
         self.tile_menu = tile_menu.TileMenu((3, 3))
@@ -38,15 +54,6 @@ class Editor:
         self.zoom_offset = [0, 0]
         self.zoom_limit = [1, 3]
 
-        #data hehe
-        self.map_data = self.load_map() 
-
-        for i in self.map_registries:
-            self.map_data[i] = self.map_data.get(i, {})
-
-        self.tile_map = self.map_data["tile"]
-        self.object_map = self.map_data["object"]
-        self.entity_map = self.map_data["entity"] 
 
         if self.tile_map == {}:
             self.layer = [0, 0]
@@ -213,8 +220,11 @@ class Editor:
             keys = [keys[i] for i in range(len(keys)) if i in tab.pierce_level]
             core_functs.data_pierce(self.map_data, [tab.get_map_registry()])
             map_registry = self.map_data[tab.get_map_registry()]
+            if not self.tile_menu.tile_data.get(tile_key): 
+                key = None
+            else: key = tile_id
 
-            tab.set_tile_id(map_registry, keys + [self.tile_slot, tileset, tile_id])
+            tab.set_tile_id(map_registry, keys + [self.tile_slot, tileset, key])
             
         else:
             keys = [self.layer[0], chunk_key, loc_key]
@@ -224,8 +234,8 @@ class Editor:
             keys = [chunk_key, loc_key]
             core_functs.data_pierce(self.entity_map, keys, value=None)
             core_functs.data_pierce(self.object_map, keys, value=None)
-            self.entity_map[chunk_key][loc_key] = None
-            self.object_map[chunk_key][loc_key] = None
+            self.entity_map[chunk_key].pop(loc_key)
+            self.object_map[chunk_key].pop(loc_key)
 
     def scroll_handler(self, dt, keys):
         #movement for camera panning
@@ -241,10 +251,9 @@ class Editor:
 
         self.scroll = [self.scroll[i] + self.scroll_vel[i] * dt for i in range(2)]
 
-    def selection_fill(self, target_loc, max_iteration=100):
+    def selection_fill(self, target_loc, max_iteration=30):
         if max_iteration > 0: 
             if target_loc not in self.cursor.selection:
-                self.place_tile(target_loc, self.tile_menu.tileset + "_" + str(12))
                 self.cursor.selection.append(target_loc)
 
                 for i in range(2):
@@ -263,6 +272,11 @@ class Editor:
             if len(self.cursor.selection):
                 self.selection_fill(self.cursor.cubify(self.cursor.translate_coords()))
 
+                #places tiles for every selection
+                for i in self.cursor.selection:
+                    self.place_tile(i.copy(), self.tile_menu.tileset + "_" + "12")
+
+                #modifies those tiles based on the tile bond
                 for i in self.cursor.selection:
                     bond = self.check_tile_bond(i)
 
@@ -275,15 +289,15 @@ class Editor:
                     if valid_tileset:
                         self.place_tile(i.copy(), tile_info)
 
-            self.cursor.selection = []
+                self.cursor.selection = []
 
     def text_handler(self, surf):
         spacing = 5
 
         save_msg = ""
         if self.save_status: save_msg = "progress saved!"
-
-        map_texts = [str(self.layer[0]), str(self.cursor.cubify(self.cursor.translate_coords())), str(self.tile_slot), save_msg]
+        coords = self.cursor.cubify(self.cursor.translate_coords())
+        map_texts = [str(self.get_chunk(coords)), str(coords), str(self.tile_slot), save_msg]
 
 
         text = [self.map_texts[i] + map_texts[i] for i in range(len(self.map_texts))]
@@ -379,7 +393,8 @@ class Editor:
                 for registry in ["object", "entity"]:
                     if chunk_key in self.map_data[registry]:
                         for coords in self.map_data[registry][chunk_key]:
-                            data = self.map_data[registry][chunk_key][coords]
+                            # string after ":" is omitted as it contains info for a particular object
+                            data = self.map_data[registry][chunk_key][coords].split(":")[0]
                             if data:
                                 self.map_render.blit(self.tile_menu.tile_data[data], [coords[j] - self.scroll[j] for j in range(2)])
 
@@ -410,7 +425,7 @@ class Editor:
     def save_map(self):
         data = core_functs.copy_dict(self.map_data)
         data = map_functs.jsonify_map(data)
-        for i in [None, [None, None]]:
+        for i in [None, [None, None], {}]:
             core_functs.prune_dict(data, i)
 
         core_functs.write_json(self.save_file, data)

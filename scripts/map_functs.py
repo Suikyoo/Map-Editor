@@ -1,4 +1,5 @@
-import pygame, core_functs
+import pygame 
+from scripts import core_functs
 #splits an image and returns a list of surf
 #Use slash(/) when specifying file path
 def cut_set(surf, dimension, colorkey=(0, 0, 0)):
