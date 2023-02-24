@@ -260,10 +260,6 @@
                         ]
                   },
                   "6:3": {
-                        "390:208": [
-                              "front_tiles_7",
-                              "front_tiles_12"
-                        ],
                         "403:208": [
                               "front_tiles_7",
                               null
@@ -296,14 +292,6 @@
                               "front_tiles_12",
                               null
                         ],
-                        "390:234": [
-                              "front_tiles_12",
-                              null
-                        ],
-                        "390:221": [
-                              "front_tiles_12",
-                              null
-                        ],
                         "403:221": [
                               "front_tiles_12",
                               null
@@ -318,10 +306,6 @@
                         ],
                         "442:221": [
                               "front_tiles_12",
-                              null
-                        ],
-                        "390:247": [
-                              "front_tiles_17",
                               null
                         ],
                         "403:247": [
@@ -1175,64 +1159,6 @@
                               "front_tiles_12"
                         ]
                   },
-                  "-8:-1": {
-                        "-520:-39": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-507:-26": [
-                              null,
-                              "front_tiles_12"
-                        ]
-                  },
-                  "-10:-1": {
-                        "-624:-39": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-611:-26": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-624:-26": [
-                              null,
-                              "front_tiles_12"
-                        ]
-                  },
-                  "-9:-1": {
-                        "-533:-26": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-572:-26": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-559:-26": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-572:-39": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-533:-39": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-546:-39": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-533:-52": [
-                              null,
-                              "front_tiles_12"
-                        ],
-                        "-546:-26": [
-                              null,
-                              "front_tiles_12"
-                        ]
-                  },
                   "8:0": {
                         "572:26": [
                               "front_tiles_7",
@@ -1898,6 +1824,78 @@
                               "front_tiles_7",
                               null
                         ]
+                  },
+                  "3:-2": {
+                        "195:-104": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "208:-104": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "221:-104": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "221:-91": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "234:-91": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "234:-78": [
+                              null,
+                              "back_tiles_0"
+                        ]
+                  },
+                  "3:-1": {
+                        "234:-65": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "234:-52": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "221:-52": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "208:-52": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "195:-52": [
+                              null,
+                              "back_tiles_0"
+                        ]
+                  },
+                  "2:-1": {
+                        "182:-52": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "182:-65": [
+                              null,
+                              "back_tiles_0"
+                        ]
+                  },
+                  "2:-2": {
+                        "182:-78": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "182:-91": [
+                              null,
+                              "back_tiles_0"
+                        ],
+                        "182:-104": [
+                              null,
+                              "back_tiles_0"
+                        ]
                   }
             },
             "1": {
@@ -2276,7 +2274,6 @@
             "8:2": {
                   "559:182": "object_torch"
             },
-            "4:2": {},
             "6:2": {
                   "429:182": "object_waypoint:level_2"
             }
@@ -2306,6 +2303,16 @@
             ],
             "collide_layers": [
                   0
+            ],
+            "peak_points": [
+                  [
+                        169,
+                        -104
+                  ],
+                  [
+                        637,
+                        260
+                  ]
             ]
       }
 }

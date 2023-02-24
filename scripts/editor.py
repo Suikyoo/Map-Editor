@@ -5,7 +5,8 @@ class Editor:
     def __init__(self, window_size):
         #save config
         self.map_registries = ["tile", "object", "entity", "info"]
-        self.save_file = os.path.join("map", os.listdir("map")[0])
+        try: self.save_file = os.path.join("map", os.listdir("map")[0])
+        except: self.save_file = "map/map_1.json"
         self.save_status = False
 
         #data hehe
@@ -23,6 +24,9 @@ class Editor:
         self.map_info["chunk_size"] = self.map_info.get("chunk_size", (5, 5))
         self.map_info["tile_size"] = self.map_info.get("tile_size", (13, 13))
         self.map_info["collide_layers"] = self.map_info.get("collide_layers", [0]) 
+        self.map_info["peak_points"] = [0] * 4
+
+        self.regression_data = core_functs.copy_dict(self.map_data)
 
         self.chunk_size = self.map_info["chunk_size"]
         self.tile_size = self.map_info["tile_size"]
@@ -64,7 +68,7 @@ class Editor:
         self.tile_slot = 1
 
         #editor controls
-        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_CAPSLOCK, pygame.K_SPACE, pygame.K_t, pygame.K_LCTRL, pygame.K_RETURN]         
+        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_CAPSLOCK, pygame.K_SPACE, pygame.K_t, pygame.K_LCTRL, pygame.K_u, pygame.K_RETURN]         
         self.tool_keys = [False] * len(self.tool_scheme)
         #detects key_taps
         self.tool_tap = self.tool_keys.copy()
@@ -104,6 +108,9 @@ class Editor:
 
     def get_chunk(self, coords):
         return [int(coords[i] // (self.chunk_size[i] * self.tile_size[i])) for i in range(2)]
+
+    def get_coord(self, chunk):
+        return [chunk[i] * (self.chunk_size[i] * self.tile_size[i]) for i in range(2)]
 
     def switch_layer(self, layer_num):
         self.layer[0] = core_functs.clamp(layer_num, (0, self.layer[1]))
@@ -269,10 +276,12 @@ class Editor:
                 if self.tile_menu.get_current_tab().surf.get_size()[i] < 4 * self.tile_size[i]:
                     valid_tileset = False
 
+
             if len(self.cursor.selection):
                 self.selection_fill(self.cursor.cubify(self.cursor.translate_coords()))
 
                 #places tiles for every selection
+                self.regression_data = core_functs.copy_dict(self.map_data)
                 for i in self.cursor.selection:
                     self.place_tile(i.copy(), self.tile_menu.tileset + "_" + "12")
 
@@ -338,6 +347,8 @@ class Editor:
                 tile_key = None
                 self.cursor.mode = 0
 
+
+            self.regression_data = core_functs.copy_dict(self.map_data)
 
             self.place_tile(coords, tile_key)
 
@@ -422,12 +433,21 @@ class Editor:
         data = map_functs.mapify_json(data)
         return data
             
+    def regress_map(self):
+        self.map_data = core_functs.copy_dict(self.regression_data)
+
     def save_map(self):
         data = core_functs.copy_dict(self.map_data)
         data = map_functs.jsonify_map(data)
         for i in [None, [None, None], {}]:
             core_functs.prune_dict(data, i)
 
+        locs = [[k for k in i.keys()] for i in core_functs.data_lift(data["tile"], 2)]
+
+        locs = [[int(n) for n in i.split(":")] for i in core_functs.mince_list(locs, 2)] 
+
+        data["info"]["peak_points"] = map_functs.get_peak_points(locs)
+        
         core_functs.write_json(self.save_file, data)
         self.save_status = True
 
@@ -455,6 +475,9 @@ class Editor:
         self.cursor_to_editor(dt)
 
         #save
+        if self.tool_tap[6]:
+            self.regress_map()
+
         if self.tool_tap[-1]:
             self.save_map()
 

@@ -22,6 +22,7 @@ class Cursor:
         self.button_type = 1
         #1 : draw, 0 : erase
         self.mode = 1
+        self.cube_condition = True
 
         #list of coords
         self.selection = []
@@ -63,7 +64,9 @@ class Cursor:
         if not coords:
             coords = self.coords.copy()
 
-        return [int((coords[i]//self.tile_size[i]) * self.tile_size[i]) for i in range(2)]
+        if self.cube_condition:
+            return [int((coords[i]//self.tile_size[i]) * self.tile_size[i]) for i in range(2)]
+        else: return self.coords.copy()
 
     def translate_coords(self):
         return [(self.coords[i] - self.zoom_offset[i]) / self.zoom + self.scroll[i] for i in range(2)]

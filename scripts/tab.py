@@ -66,6 +66,9 @@ class TileSetTab(Tab):
 
         return data
 
+    def get_tile_data(self):
+        return self.tile_data
+
     def to_matrix(self, num):
         return [num%(self.surf.get_size()[0]//self.tile_size[0]), num//(self.surf.get_size()[0]//self.tile_size[0])]
 
@@ -144,9 +147,6 @@ class UniqueTab(TileSetTab):
         surf.fill(color)
         return surf
 
-    def get_tile_data(self):
-        return self.tile_data
-
     #info = [chunk, coords, tile_slot, tileset, tile_id]
     def set_tile_id(self, dictionary, info):
         if info[-1] != None:
@@ -160,9 +160,6 @@ class UniqueTab(TileSetTab):
 
         return data
 
-    def get_tile_data(self):
-        return self.tile_data
-
 class EntityTab(UniqueTab):
     def __init__(self, tile_size):
         try: tile_ids = core_functs.read_json('entities.json') 
@@ -175,6 +172,7 @@ class EntityTab(UniqueTab):
         self.tile_data = self.set_tile_data()
 
     
+
 class ObjectTab(UniqueTab):
     def __init__(self, path, tile_size):
         tile_ids = [os.path.splitext(i)[0] for i in os.listdir(path) if os.path.isfile(os.path.join(path, i))]
@@ -194,6 +192,16 @@ class ObjectTab(UniqueTab):
             data[self.tileset_name + "_" + str(self.tile_ids[i])] = self.object_surfs[i]
 
         return data
+
+class CustomTileTab(ObjectTab):
+    def __init__(self, path, tile_size):
+        super().__init__(path, tile_size)
+        self.map_registry = "tile"
+        self.pierce_level = list(range(3))
+
+    def set_tile_data(self):
+        self.tileset_name = "custom_tiles"
+        return super().set_tile_data()
 
 class SurfMesh:
     def __init__(self, surf_size):

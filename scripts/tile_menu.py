@@ -37,24 +37,24 @@ class TileMenu:
     def load_tiles(self, tile_size):
         self.tile_size = tile_size
 
-        directory = "assets/tilesets"
-        for file in os.listdir(directory):
+        directory = "assets/tiles"
+
+        tileset_dir = os.path.join(directory, "tilesets")
+        for file in os.listdir(tileset_dir):
             tileset_name = os.path.splitext(file)[0]
-            if os.path.isfile(os.path.join(directory, file)):
+            if os.path.isfile(os.path.join(tileset_dir, file)):
                 #tabs
-                tile_tab = tab.TileSetTab(os.path.join(directory, file), tile_size)
+                tile_tab = tab.TileSetTab(os.path.join(tileset_dir, file), tile_size)
 
                 #get tile data from tab and add it to the general tile data
-                for k, v in tile_tab.get_data().items():
-                    self.tile_data[k] = v
-
                 self.tabs.append(tile_tab)
 
         self.tabs.append(tab.ObjectTab(os.path.join(directory, 'objects'), tile_size))
+        self.tabs.append(tab.CustomTileTab(os.path.join(directory, 'custom_tilesets'), tile_size))
         self.tabs.append(tab.EntityTab(tile_size))
 
-        unique_tiles = [self.tabs[-i-1].get_tile_data() for i in range(2)]
-        for i in unique_tiles:
+        #unique_tiles = [self.tabs[-i].get_tile_data() for i in range(3)]
+        for i in [i.get_tile_data() for i in self.tabs]:
             for k, v in i.items():
                 self.tile_data[k] = v
 

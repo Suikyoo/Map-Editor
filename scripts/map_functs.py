@@ -47,7 +47,6 @@ def jsonify_map(item):
 
     return item
 
-
 #opposite of jsonify_map
 #"x:y" --> (x, y)
 def mapify_json(item):
@@ -72,4 +71,22 @@ def mapify_json(item):
 
     return item
 
+#takes a list of locs and returns 4 points
+def get_peak_points(locs):
+    min_point = [None, None]
+    max_point = [None, None]
+    functs = [min, max]
+
+    for loc in locs:
+        for n in range(2):
+            functs = [min, max]
+            index = 0
+            for i in [min_point, max_point]:
+                if i[n] == None:
+                    i[n] = loc[n]
+
+                i[n] = functs[index](loc[n], i[n])  
+                index += 1
+
+    return [min_point, max_point]
 

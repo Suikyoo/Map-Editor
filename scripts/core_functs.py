@@ -128,6 +128,32 @@ def data_scout(item, key_list):
             return data_scout(item.get(key_list[0]), key_list[1:])
     return item
 
+def data_lift(item, target, current=0):
+    if current < target:
+        if isinstance(item, dict):
+            data_carriage = []
+            for k in item:
+                data_carriage += data_lift(item.get(k), target, current= current + 1)
+            return data_carriage
+
+        return []
+
+    elif current > target: return []
+    else: return [item]
+        
+def mince_list(item, target, current=0):
+    if current < target:
+        if isinstance(item, list):
+            data_carriage = []
+            for i in item:
+                data_carriage += mince_list(i, target, current=current+1)
+        return data_carriage
+
+
+    return [item]
+
+
+    new_lst = []
 def copy_dict(item):
     def replicate_dict(item):
         if isinstance(item, dict):
@@ -150,3 +176,6 @@ def prune_dict(item, blank_val={}):
         return blank_val
 
     return item
+
+
+
