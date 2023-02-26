@@ -54,7 +54,7 @@ def mapify_json(item):
         if isinstance(item, str):
             #if sequence
             if ":" in item:
-                return tuple([int(i) for i in item.split(":")])
+                return tuple([float(n) if "." in n else int(n) for n in item.split(":")])
 
             #if number
             if core_functs.is_digit(item):

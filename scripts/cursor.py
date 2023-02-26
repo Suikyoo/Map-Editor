@@ -57,16 +57,20 @@ class Cursor:
             return self.button_type
 
     def hold(self):
-        if self.control_state[1]:
-            return self.button_type
+        if self.cube_condition:
+            if self.control_state[1]:
+                return self.button_type
+        else: return self.click()
 
     def cubify(self, coords=None):
         if not coords:
             coords = self.coords.copy()
 
+        coords = [round(i, 2) for i in coords]
+
         if self.cube_condition:
             return [int((coords[i]//self.tile_size[i]) * self.tile_size[i]) for i in range(2)]
-        else: return self.coords.copy()
+        else: return coords.copy()
 
     def translate_coords(self):
         return [(self.coords[i] - self.zoom_offset[i]) / self.zoom + self.scroll[i] for i in range(2)]

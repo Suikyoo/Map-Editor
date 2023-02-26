@@ -1,4 +1,4 @@
-import os, pygame
+import os, pygame, copy
 from scripts import tile_menu, cursor, core_functs, map_functs, font
 
 class Editor:
@@ -12,21 +12,10 @@ class Editor:
         #data hehe
         self.map_data = self.load_map() 
 
-        for i in self.map_registries:
-            self.map_data[i] = self.map_data.get(i, {})
+        self.configure_map()
 
-        self.tile_map = self.map_data["tile"]
-        self.object_map = self.map_data["object"]
-        self.entity_map = self.map_data["entity"] 
-        self.map_info = self.map_data["info"]
-
-        #tile config
-        self.map_info["chunk_size"] = self.map_info.get("chunk_size", (5, 5))
-        self.map_info["tile_size"] = self.map_info.get("tile_size", (13, 13))
-        self.map_info["collide_layers"] = self.map_info.get("collide_layers", [0]) 
-        self.map_info["peak_points"] = [0] * 4
-
-        self.regression_data = core_functs.copy_dict(self.map_data)
+        self.map_history = []
+        self.max_regression = 5
 
         self.chunk_size = self.map_info["chunk_size"]
         self.tile_size = self.map_info["tile_size"]
@@ -35,7 +24,7 @@ class Editor:
 
         #texts
         self.font = font.Font("assets/font/font.png")
-        self.map_texts = ["chunk: ", "coords: ", "tile_slot: ", ""]
+        self.map_texts = ["chunk: ", "coords: ", "tile_slot: ", "", ""]
 
         #tile menu  
         self.tile_menu = tile_menu.TileMenu((3, 3))
@@ -68,7 +57,7 @@ class Editor:
         self.tile_slot = 1
 
         #editor controls
-        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_CAPSLOCK, pygame.K_SPACE, pygame.K_t, pygame.K_LCTRL, pygame.K_u, pygame.K_RETURN]         
+        self.tool_scheme = [pygame.K_LSHIFT, pygame.K_LALT, pygame.K_CAPSLOCK, pygame.K_SPACE, pygame.K_t, pygame.K_LCTRL, pygame.K_u, pygame.K_c, pygame.K_RETURN]         
         self.tool_keys = [False] * len(self.tool_scheme)
         #detects key_taps
         self.tool_tap = self.tool_keys.copy()
@@ -102,6 +91,20 @@ class Editor:
 
         self.map_geography = ["Layer", "Chunk", "Coord", "Tile Slot"]
 
+    def configure_map(self):
+        for i in self.map_registries:
+            self.map_data[i] = self.map_data.get(i, {})
+        #alias
+        self.tile_map = self.map_data["tile"]
+        self.object_map = self.map_data["object"]
+        self.entity_map = self.map_data["entity"] 
+        self.map_info = self.map_data["info"]
+
+        #tile config
+        self.map_info["chunk_size"] = self.map_info.get("chunk_size", (5, 5))
+        self.map_info["tile_size"] = self.map_info.get("tile_size", (13, 13))
+        self.map_info["collide_layers"] = self.map_info.get("collide_layers", [0]) 
+        self.map_info["peak_points"] = [0] * 4
     
     def add_layer(self):
         self.layer[1] += 1
@@ -280,8 +283,6 @@ class Editor:
             if len(self.cursor.selection):
                 self.selection_fill(self.cursor.cubify(self.cursor.translate_coords()))
 
-                #places tiles for every selection
-                self.regression_data = core_functs.copy_dict(self.map_data)
                 for i in self.cursor.selection:
                     self.place_tile(i.copy(), self.tile_menu.tileset + "_" + "12")
 
@@ -304,9 +305,12 @@ class Editor:
         spacing = 5
 
         save_msg = ""
+        cube_condition = "off-grid"
         if self.save_status: save_msg = "progress saved!"
+        if self.cursor.cube_condition: cube_condition = "cubified"
+
         coords = self.cursor.cubify(self.cursor.translate_coords())
-        map_texts = [str(self.get_chunk(coords)), str(coords), str(self.tile_slot), save_msg]
+        map_texts = [str(self.get_chunk(coords)), str(coords), str(self.tile_slot), cube_condition, save_msg]
 
 
         text = [self.map_texts[i] + map_texts[i] for i in range(len(self.map_texts))]
@@ -347,9 +351,6 @@ class Editor:
                 tile_key = None
                 self.cursor.mode = 0
 
-
-            self.regression_data = core_functs.copy_dict(self.map_data)
-
             self.place_tile(coords, tile_key)
 
             #handles selection tiles
@@ -368,6 +369,9 @@ class Editor:
         #right now, it just detects
         #mousewheel events
         if cursor_click:
+            self.map_history.append(copy.deepcopy(self.map_data))
+            self.map_history = self.map_history[max(0, len(self.map_history) - self.max_regression - 1):]
+
             if cursor_click == 4:
                 self.zoom = core_functs.clamp(self.zoom + 30 * dt, self.zoom_limit)
             if cursor_click == 5:
@@ -434,17 +438,22 @@ class Editor:
         return data
             
     def regress_map(self):
-        self.map_data = core_functs.copy_dict(self.regression_data)
+        try: 
+            self.map_data = copy.deepcopy(self.map_history[-2])
+            self.configure_map()
+            self.map_history.pop(-1)
+        except IndexError: 
+            pass 
 
     def save_map(self):
-        data = core_functs.copy_dict(self.map_data)
+        data = copy.deepcopy(self.map_data)
         data = map_functs.jsonify_map(data)
         for i in [None, [None, None], {}]:
             core_functs.prune_dict(data, i)
 
         locs = [[k for k in i.keys()] for i in core_functs.data_lift(data["tile"], 2)]
 
-        locs = [[int(n) for n in i.split(":")] for i in core_functs.mince_list(locs, 2)] 
+        locs = [[float(n) if "." in n else int(n) for n in i.split(":")] for i in core_functs.mince_list(locs, 2)] 
 
         data["info"]["peak_points"] = map_functs.get_peak_points(locs)
         
@@ -470,14 +479,18 @@ class Editor:
         self.render_map()
 
         self.tile_menu.update(self.surf)
+
         self.cursor.update(self.surf, self.scroll, self.zoom, self.zoom_offset)
         self.menu_to_cursor()
         self.cursor_to_editor(dt)
 
-        #save
+        if self.tool_tap[7]:
+            self.cursor.cube_condition = not self.cursor.cube_condition
+
         if self.tool_tap[6]:
             self.regress_map()
 
+        #save
         if self.tool_tap[-1]:
             self.save_map()
 
