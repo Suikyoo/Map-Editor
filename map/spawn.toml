@@ -1,0 +1,88 @@
+[[entity]]
+type = "player"
+coords = [299, 91]
+
+[[entity]]
+type = "lostsoul"
+coords = [351, 91]
+
+[[entity]]
+type = "guardian"
+coords = [208, 91]
+
+[[object]]
+type = "torch"
+coords = [377, 91]
+
+[[object]]
+type = "torch"
+coords = [364, 91]
+
+[[object]]
+type = "torch"
+coords = [351, 91]
+
+[[object]]
+type = "torch"
+coords = [338, 91]
+
+[[object]]
+type = "torch"
+coords = [325, 91]
+
+[[object]]
+type = "torch"
+coords = [351, 65]
+
+[[object]]
+type = "torch"
+coords = [286, 91]
+
+[[object]]
+type = "torch"
+coords = [273, 91]
+
+[[object]]
+type = "torch"
+coords = [260, 91]
+
+[[object]]
+type = "torch"
+coords = [260, 65]
+
+[[object]]
+type = "waypoint"
+coords = [312, 91]
+
+[[object]]
+type = "torch"
+coords = [247, 91]
+
+[[object]]
+type = "torch"
+coords = [234, 91]
+
+[[object]]
+type = "torch"
+coords = [338, 52]
+
+[[object]]
+type = "torch"
+coords = [325, 52]
+
+[[object]]
+type = "torch"
+coords = [273, 52]
+
+[[object]]
+type = "torch"
+coords = [299, 39]
+
+[[object]]
+type = "torch"
+coords = [312, 39]
+
+[[object]]
+type = "torch"
+coords = [286, 52]
+

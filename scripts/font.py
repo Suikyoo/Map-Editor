@@ -1,5 +1,5 @@
 import pygame 
-from scripts import core_functs
+import core_functs
 
 class Font:
     def __init__(self, path):

@@ -1,4 +1,17 @@
-import json, pygame, math, random
+import json, pygame, math, random, toml
+
+#yeah yeah sin cos tan but cos and sin should be index 0 and 1 respectively bc I said so
+trig_functs = [math.cos, math.sin, math.tan]
+
+class TomlEncoder(toml.encoder.TomlEncoder):
+    def dump_list(self, v):
+        retval = "["
+        for u in range(len(v)):
+            retval += str(self.dump_value(v[u]))
+            if u < len(v) - 1:
+                retval += ", "
+        retval += "]"
+        return retval
 
 def get_distance(coords, target):
      return math.sqrt((coords[0] - target[0])**2 + (coords[1] - target[1])**2)
@@ -24,8 +37,12 @@ def lerp(current, target, rate):
 def ferp(current, target, rate):
     return (target - current) * rate
 
-def safe_divide(dividend, divisor):
-    try: return dividend/divisor
+def divide(a, b):
+    try: return a/b
+    except ZeroDivisionError: return 0
+
+def modulo(a, b):
+    try: return a%b
     except ZeroDivisionError: return 0
 
 def cut(surface, x, y, width, height):
@@ -90,9 +107,26 @@ def circle_to_surf(radius, color):
     pygame.draw.circle(surf, color, (radius, radius), radius)
     return surf
 
-def read_json(file_path):
-    with open(file_path, 'r') as f:
-        return json.load(f)
+def read_toml(file_path, error_val=None):
+    try:
+        return toml.load(file_path) 
+
+    except:
+        return error_val
+
+
+def write_toml(file_path, content):
+    f = open(file_path, 'w')
+    data = toml.dump(content, f, encoder=TomlEncoder(content.__class__))
+    f.close()
+    return data
+
+def read_json(file_path, error_val=None):
+    try:
+        with open(file_path, 'r') as f:
+            return json.load(f)
+
+    except: return error_val
 
 def write_json(file_path, content):
     with open(file_path, 'w') as f:

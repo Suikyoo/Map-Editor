@@ -1,5 +1,5 @@
 import pygame, os 
-from scripts import map_functs, core_functs, tab, font
+import map_functs, core_functs, tab, font
 
 class TileMenu:
     def __init__(self, coords):
@@ -15,8 +15,10 @@ class TileMenu:
 
         self.coords = coords
 
-        self.font = font.Font('assets/font/font.png')
+        self.font = font.Font('../assets/font/font.png')
         self.tile_texts = ["", ""]
+
+        self.shift_key = False
 
     def set_loc(self, coords):
         self.coords = coords
@@ -34,24 +36,27 @@ class TileMenu:
                 (1, div - 1, self.surf.get_width() - 2, self.surf.get_height() - div)
                 )
 
-    def load_tiles(self, tile_size):
+    def load_tiles(self, tile_size, chunk_size):
         self.tile_size = tile_size
+        self.chunk_size = chunk_size
 
-        directory = "assets/tiles"
+        directory = "../assets/tiles"
 
         tileset_dir = os.path.join(directory, "tilesets")
         for file in os.listdir(tileset_dir):
             tileset_name = os.path.splitext(file)[0]
             if os.path.isfile(os.path.join(tileset_dir, file)):
                 #tabs
-                tile_tab = tab.TileSetTab(os.path.join(tileset_dir, file), tile_size)
+                tile_tab = tab.TileSetTab(os.path.join(tileset_dir, file), tile_size, chunk_size)
 
                 #get tile data from tab and add it to the general tile data
                 self.tabs.append(tile_tab)
 
-        self.tabs.append(tab.ObjectTab(os.path.join(directory, 'objects'), tile_size))
-        self.tabs.append(tab.CustomTileTab(os.path.join(directory, 'custom_tilesets'), tile_size))
-        self.tabs.append(tab.EntityTab(tile_size))
+        custom_tileset_dir = os.path.join(tileset_dir, "custom_tilesets")
+        self.tabs.append(tab.CustomTileTab(custom_tileset_dir, tile_size, chunk_size))
+
+        self.tabs.append(tab.EntityTab(tile_size, chunk_size))
+        self.tabs.append(tab.ObjectTab(os.path.join(directory, 'objects'), tile_size, chunk_size))
 
         #unique_tiles = [self.tabs[-i].get_tile_data() for i in range(3)]
         for i in [i.get_tile_data() for i in self.tabs]:
@@ -70,7 +75,10 @@ class TileMenu:
         self.tabs[self.tab_index].event_handler(event) 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_TAB:
-                self.tab_index  = (self.tab_index + 1) % len(self.tabs)
+                if pygame.key.get_pressed()[pygame.K_LSHIFT]:
+                    self.tab_index  = (self.tab_index - 1) % len(self.tabs)
+                else:
+                    self.tab_index  = (self.tab_index + 1) % len(self.tabs)
         
     def draw(self, surf):
         #setting current_tab as it takes way too long to write self.tabs[self.tab_index]

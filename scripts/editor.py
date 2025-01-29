@@ -1,18 +1,26 @@
 import os, pygame, copy
-from scripts import tile_menu, cursor, core_functs, map_functs, font
+import tile_menu, cursor, core_functs, map_functs, font
 
 class Editor:
     def __init__(self, window_size):
         #save config
         self.map_registries = ["tile", "object", "entity", "info"]
-        try: self.save_file = os.path.join("map", os.listdir("map")[0])
-        except: self.save_file = "map/map_1.json"
+
+        maps = [i for i in os.listdir("../map") if os.path.splitext(i)[1] == ".json"]
+        spawn = [i for i in os.listdir("../map") if os.path.splitext(i)[1] == ".toml"]
+
+        self.map_save_path = maps[0] if len(maps) else "map.json"
+        self.spawn_save_path = spawn[0] if len(spawn) else "spawn.toml"
+
+        self.map_save_path = os.path.join("../map", self.map_save_path)
+        self.spawn_save_path = os.path.join("../map", self.spawn_save_path)
+
+
         self.save_status = False
 
         #data hehe
-        self.map_data = self.load_map() 
+        self.load_map() 
 
-        self.configure_map()
 
         self.map_history = []
         self.max_regression = 5
@@ -23,13 +31,13 @@ class Editor:
         #gui elements
 
         #texts
-        self.font = font.Font("assets/font/font.png")
+        self.font = font.Font("../assets/font/font.png")
         self.map_texts = ["chunk: ", "coords: ", "tile_slot: ", "", ""]
 
         #tile menu  
         self.tile_menu = tile_menu.TileMenu((3, 3))
         self.tile_menu.set_render((80, 294))
-        self.tile_menu.load_tiles(self.tile_size)
+        self.tile_menu.load_tiles(self.tile_size, self.chunk_size)
 
         self.cursor = cursor.Cursor()
         self.cursor.set_tile_info("", 0, tile_size=list(self.tile_size))
@@ -73,21 +81,25 @@ class Editor:
         self.movement_tap = self.movement_keys.copy()
         self.movement_delay = self.movement_keys.copy()
 
+        #tile_bond collision sequence is (left, right, top, down)
+        #tile 9, 10, 11, 12 are left, right, top, down tiles respectively as well
         self.tile_bond = {
-                (False, False, False, True) : 2, 
-                (False, True, False, True) : 6, 
-                (True, True, False, True) : 7, 
-                (True, False, False, True) : 8, 
-                (False, True, False, False) : 10, 
-                (False, True, True, True) : 11, 
-                (True, True, True, True) : 12, 
-                (True, False, True, True) : 13, 
-                (True, False, False, False) : 14,
-                (False, True, True, False) : 16, 
-                (True, True, True, False) : 17, 
-                (True, False, True, False) : 18, 
-                (False, False, True, False) : 22 
-                } 
+                (False, True, False, True) : 0, 
+                (True, True, False, True) : 1, 
+                (True, False, False, True) : 2, 
+                (False, True, True, True) : 3, 
+                (True, True, True, True) : 4, 
+                (True, False, True, True) : 5, 
+                (False, True, True, False) : 6, 
+                (True, True, True, False) : 7, 
+                (True, False, True, False) : 8, 
+
+                (False, True, False, False) : 9, 
+                (True, False, False, False) : 10, 
+                (False, False, False, True) : 11, 
+                (False, False, True, False) : 12, 
+
+                }
 
         self.map_geography = ["Layer", "Chunk", "Coord", "Tile Slot"]
 
@@ -110,7 +122,7 @@ class Editor:
         self.layer[1] += 1
 
     def get_chunk(self, coords):
-        return [int(coords[i] // (self.chunk_size[i] * self.tile_size[i])) for i in range(2)]
+        return tuple([int(coords[i] // (self.chunk_size[i] * self.tile_size[i])) for i in range(2)])
 
     def get_coord(self, chunk):
         return [chunk[i] * (self.chunk_size[i] * self.tile_size[i]) for i in range(2)]
@@ -223,8 +235,8 @@ class Editor:
         loc_key = tuple(coords)
 
         if tile_key:
-            tileset, tile_id = tile_key.rsplit("_", 1)
-
+            token = tile_key.rsplit("_", 1) 
+            tileset, tile_id = (token) if len(token) == 2 else ("", token[0])
             tab = self.tile_menu.get_tab_from_name(tileset)
             keys = [self.layer[0], chunk_key, loc_key]
             keys = [keys[i] for i in range(len(keys)) if i in tab.pierce_level]
@@ -233,7 +245,7 @@ class Editor:
             if not self.tile_menu.tile_data.get(tile_key): 
                 key = None
             else: key = tile_id
-
+                
             tab.set_tile_id(map_registry, keys + [self.tile_slot, tileset, key])
             
         else:
@@ -274,29 +286,30 @@ class Editor:
 
     def selection_handler(self):
         if not self.tool_keys[3]:
-            valid_tileset = True
-            for i in range(2):
-                if self.tile_menu.get_current_tab().surf.get_size()[i] < 4 * self.tile_size[i]:
-                    valid_tileset = False
+            conventional_tileset = False
 
+            for i in range(2):
+                if self.tile_menu.get_current_tab().surf.get_size()[i] >= 3 * self.tile_size[i]:
+                    conventional_tileset = True
 
             if len(self.cursor.selection):
                 self.selection_fill(self.cursor.cubify(self.cursor.translate_coords()))
 
                 for i in self.cursor.selection:
-                    self.place_tile(i.copy(), self.tile_menu.tileset + "_" + "12")
+                    if conventional_tileset:
+                        self.place_tile(i.copy(), self.tile_menu.tileset + "_" + "4")
 
                 #modifies those tiles based on the tile bond
                 for i in self.cursor.selection:
                     bond = self.check_tile_bond(i)
 
                     if self.cursor.mode:
-                        if valid_tileset:
-                            tile_info = self.tile_menu.tileset + "_" + str(self.tile_bond.get(bond, 12)) 
+                            tile_info = self.tile_menu.tileset + "_" + str(self.tile_bond.get(bond, 4)) 
+
                     else:
                         tile_info = None
                         
-                    if valid_tileset:
+                    if conventional_tileset:
                         self.place_tile(i.copy(), tile_info)
 
                 self.cursor.selection = []
@@ -325,7 +338,6 @@ class Editor:
 
         cursor_click = self.cursor.click()
         cursor_hold = self.cursor.hold()
-
         
         if cursor_hold: 
             #translate and cubify coords
@@ -344,14 +356,14 @@ class Editor:
             coords = self.cursor.cubify(self.cursor.translate_coords())
 
             if cursor_hold == 1:
-                tile_key = self.cursor.tileset + "_" + str(self.cursor.tile_id)
+                tile_key = "_".join([i for i in [self.cursor.tileset, str(self.cursor.tile_id)] if len(i)])
                 self.cursor.mode = 1
+                self.place_tile(coords, tile_key)
 
             elif cursor_hold == 3:
                 tile_key = None
                 self.cursor.mode = 0
-
-            self.place_tile(coords, tile_key)
+                self.place_tile(coords, tile_key)
 
             #handles selection tiles
             if self.tool_keys[3]:
@@ -368,14 +380,13 @@ class Editor:
         #the name is kinda useless
         #right now, it just detects
         #mousewheel events
-        if cursor_click:
+        if cursor_click in (1, 2): 
             self.map_history.append(copy.deepcopy(self.map_data))
             self.map_history = self.map_history[max(0, len(self.map_history) - self.max_regression - 1):]
-
-            if cursor_click == 4:
-                self.zoom = core_functs.clamp(self.zoom + 30 * dt, self.zoom_limit)
-            if cursor_click == 5:
-                self.zoom = core_functs.clamp(self.zoom - 30 * dt, self.zoom_limit)
+        if cursor_click == 4:
+            self.zoom = core_functs.clamp(self.zoom + 30 * dt, self.zoom_limit)
+        if cursor_click == 5:
+            self.zoom = core_functs.clamp(self.zoom - 30 * dt, self.zoom_limit)
 
     def render_map(self):
         #fill
@@ -409,7 +420,7 @@ class Editor:
                     if chunk_key in self.map_data[registry]:
                         for coords in self.map_data[registry][chunk_key]:
                             # string after ":" is omitted as it contains info for a particular object
-                            data = self.map_data[registry][chunk_key][coords].split(":")[0]
+                            data = self.map_data[registry][chunk_key][coords].split("?")[0]
                             if data:
                                 self.map_render.blit(self.tile_menu.tile_data[data], [coords[j] - self.scroll[j] for j in range(2)])
 
@@ -432,10 +443,11 @@ class Editor:
 
             
     def load_map(self):
-        try: data = core_functs.read_json(self.save_file)
-        except FileNotFoundError: data = {}
-        data = map_functs.mapify_json(data)
-        return data
+        self.map_data = map_functs.mapify_json(core_functs.read_json(self.map_save_path, error_val={}))
+        spawn_data = map_functs.tilify(core_functs.read_toml(self.spawn_save_path, error_val={}), [self.map_data["info"]["chunk_size"][i] * self.map_data["info"]["tile_size"][i] for i in range(2)])
+        self.map_data.update(spawn_data)
+        self.configure_map()
+
             
     def regress_map(self):
         try: 
@@ -446,18 +458,27 @@ class Editor:
             pass 
 
     def save_map(self):
-        data = copy.deepcopy(self.map_data)
-        data = map_functs.jsonify_map(data)
-        for i in [None, [None, None], {}]:
-            core_functs.prune_dict(data, i)
+        map_data = copy.deepcopy(self.map_data)
 
-        locs = [[k for k in i.keys()] for i in core_functs.data_lift(data["tile"], 2)]
+        spawn_data = {}
+        spawn_data["entity"] = map_data.pop("entity")
+        spawn_data["object"] = map_data.pop("object")
+        spawn_data = map_functs.spawnify(spawn_data)
+        core_functs.write_toml(self.spawn_save_path, spawn_data)
+
+        map_data = map_functs.jsonify_map(map_data)
+
+        for j in [None, [None, None], {}]:
+            core_functs.prune_dict(map_data, j)
+
+        locs = [[k for k in i.keys()] for i in core_functs.data_lift(map_data["tile"], 2)]
 
         locs = [[float(n) if "." in n else int(n) for n in i.split(":")] for i in core_functs.mince_list(locs, 2)] 
 
-        data["info"]["peak_points"] = map_functs.get_peak_points(locs)
-        
-        core_functs.write_json(self.save_file, data)
+        map_data["info"]["peak_points"] = map_functs.get_peak_points(locs)
+
+        core_functs.write_json(self.map_save_path, map_data)
+
         self.save_status = True
 
     def update(self, surf, dt):

@@ -1,13 +1,13 @@
-import pygame 
-from scripts import core_functs
+import pygame, math
+import core_functs
 #splits an image and returns a list of surf
 #Use slash(/) when specifying file path
 def cut_set(surf, dimension, colorkey=(0, 0, 0)):
     surf = surf.copy()
     surf_size = surf.get_size()
     tileset = []
-    for y in range(surf_size[1]//dimension[1]):
-        for x in range(surf_size[0]//dimension[0]):
+    for y in range(math.ceil(surf_size[1]/dimension[1])):
+        for x in range(math.ceil(surf_size[0]/dimension[0])):
             tile_surf = core_functs.cut(surf, dimension[0] * x, dimension[1] * y, dimension[0], dimension[1])   
             
             real_tile = False
@@ -25,7 +25,6 @@ def cut_set(surf, dimension, colorkey=(0, 0, 0)):
             tileset.append(tile)
 
     return tileset
-
 
 #returns a dict that stringifies sequence keys 
 #(x, y) --> "x:y"
@@ -70,6 +69,37 @@ def mapify_json(item):
         return [mapify_json(i) for i in item]
 
     return item
+
+
+def tilify(data, chunk_pxl_size):
+    new_data = {}
+    for spawn_type in data:
+        new_data[spawn_type] = {}
+
+        for index in range(len(data[spawn_type])):
+            spawn = data[spawn_type][index]
+
+            chunk = tuple([int(spawn["coords"][i] // chunk_pxl_size[i]) for i in range(2)]) 
+            coords = tuple(spawn["coords"])
+
+            if chunk not in new_data[spawn_type]:
+                new_data[spawn_type][chunk] = {}
+
+            new_data[spawn_type][chunk][coords] = "_".join([spawn_type, spawn["type"]])
+
+    return new_data
+
+def spawnify(data):
+    new_data = {}
+    for spawn_type in data:
+        new_data[spawn_type] = []
+        for chunk in data[spawn_type]:
+            for loc in data[spawn_type][chunk]:
+                obj_type = data[spawn_type][chunk][loc].split("_")[1]
+                
+                new_data[spawn_type].append({"type" : obj_type, "coords" : loc})
+
+    return new_data
 
 #takes a list of locs and returns 4 points
 def get_peak_points(locs):

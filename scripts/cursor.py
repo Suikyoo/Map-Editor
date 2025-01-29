@@ -1,5 +1,5 @@
 import pygame 
-from scripts import core_functs
+import core_functs
 
 class Cursor:
     def __init__(self):
@@ -8,7 +8,7 @@ class Cursor:
         self.zoom_offset = [0, 0]
         self.zoom = 1
 
-        self.img = pygame.image.load('assets/cursor/cursor.png').convert()
+        self.img = pygame.image.load('../assets/cursor/cursor.png').convert()
         self.img.set_colorkey((0, 0, 0))
         self.color = (255, 255, 255)
 
